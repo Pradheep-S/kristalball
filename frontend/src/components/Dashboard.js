@@ -25,12 +25,18 @@ function Dashboard({ token, user, onNavigate }) {
   const [showNetMovementDetail, setShowNetMovementDetail] = useState(false);
 
   useEffect(() => {
-    // Animate cards on mount
-    gsap.fromTo(cardsRef.current, 
-      { opacity: 0, y: 50 },
-      { opacity: 1, y: 0, duration: 0.8, stagger: 0.1, ease: "power2.out" }
-    );
-  }, [metrics]);
+    // Animate cards on mount - only if metrics are loaded and refs are populated
+    if (metrics.total_assets && cardsRef.current.length > 0 && !loading) {
+      // Filter out null/undefined refs
+      const validRefs = cardsRef.current.filter(ref => ref !== null && ref !== undefined);
+      if (validRefs.length > 0) {
+        gsap.fromTo(validRefs, 
+          { opacity: 0, y: 50 },
+          { opacity: 1, y: 0, duration: 0.8, stagger: 0.1, ease: "power2.out" }
+        );
+      }
+    }
+  }, [metrics, loading]);
 
   useEffect(() => {
     // Simulate API call with mock data
@@ -285,7 +291,7 @@ function Dashboard({ token, user, onNavigate }) {
           {/* Total Assets */}
           <motion.div 
             className="bg-white shadow-xl rounded-2xl p-6 border border-slate-200 hover:shadow-2xl transition-shadow duration-300"
-            ref={el => cardsRef.current[0] = el}
+            ref={el => { if (el) cardsRef.current[0] = el; }}
             whileHover={{ y: -5, scale: 1.02 }}
             whileTap={{ scale: 0.98 }}
             transition={{ type: "spring", stiffness: 300 }}
@@ -307,7 +313,7 @@ function Dashboard({ token, user, onNavigate }) {
           {/* Operational Status */}
           <motion.div 
             className="bg-white shadow-xl rounded-2xl p-6 border border-slate-200 hover:shadow-2xl transition-shadow duration-300"
-            ref={el => cardsRef.current[1] = el}
+            ref={el => { if (el) cardsRef.current[1] = el; }}
             whileHover={{ y: -5, scale: 1.02 }}
             whileTap={{ scale: 0.98 }}
             transition={{ type: "spring", stiffness: 300 }}
@@ -329,7 +335,7 @@ function Dashboard({ token, user, onNavigate }) {
           {/* Maintenance Required */}
           <motion.div 
             className="bg-white shadow-xl rounded-2xl p-6 border border-slate-200 hover:shadow-2xl transition-shadow duration-300"
-            ref={el => cardsRef.current[2] = el}
+            ref={el => { if (el) cardsRef.current[2] = el; }}
             whileHover={{ y: -5, scale: 1.02 }}
             whileTap={{ scale: 0.98 }}
             transition={{ type: "spring", stiffness: 300 }}
@@ -351,7 +357,7 @@ function Dashboard({ token, user, onNavigate }) {
           {/* Pending Transfers */}
           <motion.div 
             className="bg-white shadow-xl rounded-2xl p-6 border border-slate-200 hover:shadow-2xl transition-shadow duration-300"
-            ref={el => cardsRef.current[3] = el}
+            ref={el => { if (el) cardsRef.current[3] = el; }}
             whileHover={{ y: -5, scale: 1.02 }}
             whileTap={{ scale: 0.98 }}
             transition={{ type: "spring", stiffness: 300 }}
