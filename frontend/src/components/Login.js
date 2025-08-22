@@ -292,7 +292,7 @@ function Login({ onLogin }) {
 
         {/* Main Form Card */}
         <motion.div 
-          className="bg-military-800/20 backdrop-blur-md rounded-2xl p-8 shadow-military-2xl border border-military-600/50"
+          className="bg-military-800/20 backdrop-blur-md rounded-2xl p-6 sm:p-8 shadow-military-2xl border border-military-600/50"
           initial={{ opacity: 0, scale: 0.9 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ delay: 0.3 }}
@@ -300,7 +300,7 @@ function Login({ onLogin }) {
           {/* Tab Switcher */}
           <div className="flex mb-8 bg-military-950/40 rounded-xl p-1 border border-military-700">
             <motion.button
-              onClick={() => !isSignup && handleModeSwitch()}
+              onClick={() => isSignup && handleModeSwitch()}
               className={`flex-1 py-3 px-4 rounded-lg text-sm font-medium transition-all duration-300 font-tactical tracking-wide ${
                 !isSignup 
                   ? 'bg-gradient-tactical text-desert-100 shadow-military-lg border border-military-600' 
@@ -312,7 +312,7 @@ function Login({ onLogin }) {
               SIGN IN
             </motion.button>
             <motion.button
-              onClick={() => isSignup && handleModeSwitch()}
+              onClick={() => !isSignup && handleModeSwitch()}
               className={`flex-1 py-3 px-4 rounded-lg text-sm font-medium transition-all duration-300 font-tactical tracking-wide ${
                 isSignup 
                   ? 'bg-gradient-tactical text-desert-100 shadow-military-lg border border-military-600' 
@@ -326,8 +326,8 @@ function Login({ onLogin }) {
           </div>
 
           {/* Form */}
-          <form onSubmit={handleSubmit} ref={formRef} className="space-y-6">
-            <div className="space-y-6">
+          <form onSubmit={handleSubmit} ref={formRef} className="space-y-4 sm:space-y-6">
+            <div className="space-y-4 sm:space-y-6">
               {/* Username Field */}
               <motion.div 
                 key="username-field"
@@ -432,24 +432,24 @@ function Login({ onLogin }) {
                     exit={{ opacity: 0, x: -20 }}
                     transition={{ duration: 0.3, delay: 0.3 }}
                   >
-                    <label className="block text-sm font-medium text-white mb-2">
-                      Confirm Password
+                    <label className="block text-sm font-medium text-desert-200 mb-2 font-tactical tracking-wide">
+                      CONFIRM ACCESS CODE
                     </label>
                     <div className="relative">
-                      <KeyIcon className="absolute left-3 top-1/2 transform -translate-y-1/2 text-white/50 w-5 h-5" />
+                      <KeyIcon className="absolute left-3 top-1/2 transform -translate-y-1/2 text-military-400 w-5 h-5" />
                       <input
                         type={showConfirmPassword ? "text" : "password"}
                         name="confirmPassword"
                         value={formData.confirmPassword}
                         onChange={handleInputChange}
                         required
-                        className="w-full pl-10 pr-12 py-3 bg-white/10 border border-white/20 rounded-xl text-white placeholder-white/50 focus:bg-white/20 focus:border-blue-400 focus:outline-none transition-all duration-300"
-                        placeholder="Confirm your password"
+                        className="w-full pl-10 pr-12 py-3 bg-military-800/30 border border-military-600 rounded-xl text-desert-100 placeholder-military-400 focus:bg-military-700/40 focus:border-accent-light focus:outline-none transition-all duration-300 font-mono"
+                        placeholder="Confirm your access code"
                       />
                       <motion.button
                         type="button"
                         onClick={() => setShowConfirmPassword(!showConfirmPassword)}
-                        className="absolute right-3 top-1/2 transform -translate-y-1/2 text-white/50 hover:text-white transition-colors"
+                        className="absolute right-3 top-1/2 transform -translate-y-1/2 text-military-400 hover:text-desert-200 transition-colors"
                         whileHover={{ scale: 1.1 }}
                         whileTap={{ scale: 0.9 }}
                       >
@@ -473,7 +473,7 @@ function Login({ onLogin }) {
                     animate={{ opacity: 1, x: 0 }}
                     exit={{ opacity: 0, x: -20 }}
                     transition={{ duration: 0.3, delay: 0.4 }}
-                    className="space-y-6"
+                    className="space-y-4 sm:space-y-6"
                   >
                     <motion.div 
                       className="form-field"
@@ -481,14 +481,14 @@ function Login({ onLogin }) {
                       animate={{ opacity: 1, x: 0 }}
                       transition={{ duration: 0.3, delay: 0.4 }}
                     >
-                      <label className="block text-sm font-medium text-white mb-2">
-                        Role
+                      <label className="block text-sm font-medium text-desert-200 mb-2 font-tactical tracking-wide">
+                        OPERATIONAL ROLE
                       </label>
                       <select
                         name="role"
                         value={formData.role}
                         onChange={handleInputChange}
-                        className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-xl text-white focus:bg-white/20 focus:border-blue-400 focus:outline-none transition-all duration-300"
+                        className="w-full px-4 py-3 bg-military-800/30 border border-military-600 rounded-xl text-desert-100 focus:bg-military-700/40 focus:border-accent-light focus:outline-none transition-all duration-300 font-mono"
                       >
                         <option value="logistics_officer" className="text-slate-900">Logistics Officer</option>
                         <option value="commander" className="text-slate-900">Commander</option>
@@ -503,16 +503,16 @@ function Login({ onLogin }) {
                       animate={{ opacity: 1, x: 0 }}
                       transition={{ duration: 0.3, delay: 0.5 }}
                     >
-                      <label className="block text-sm font-medium text-white mb-2">
-                        Base Assignment
+                      <label className="block text-sm font-medium text-desert-200 mb-2 font-tactical tracking-wide">
+                        BASE ASSIGNMENT
                       </label>
                       <div className="relative">
-                        <BuildingOfficeIcon className="absolute left-3 top-1/2 transform -translate-y-1/2 text-white/50 w-5 h-5" />
+                        <BuildingOfficeIcon className="absolute left-3 top-1/2 transform -translate-y-1/2 text-military-400 w-5 h-5" />
                         <select
                           name="base_id"
                           value={formData.base_id}
                           onChange={handleInputChange}
-                          className="w-full pl-10 pr-4 py-3 bg-white/10 border border-white/20 rounded-xl text-white focus:bg-white/20 focus:border-blue-400 focus:outline-none transition-all duration-300"
+                          className="w-full pl-10 pr-4 py-3 bg-military-800/30 border border-military-600 rounded-xl text-desert-100 focus:bg-military-700/40 focus:border-accent-light focus:outline-none transition-all duration-300 font-mono"
                         >
                           {bases.map((base, index) => (
                             <option key={`base-option-${base.id}-${index}`} value={base.id} className="text-slate-900">
@@ -538,7 +538,7 @@ function Login({ onLogin }) {
                   transition={{ duration: 0.3 }}
                 >
                   <ExclamationTriangleIcon className="w-5 h-5 flex-shrink-0" />
-                  <span className="text-sm">{error}</span>
+                  <span className="text-sm font-tactical">{error}</span>
                 </motion.div>
               )}
             </AnimatePresence>
@@ -554,7 +554,7 @@ function Login({ onLogin }) {
                   transition={{ duration: 0.3 }}
                 >
                   <CheckCircleIcon className="w-5 h-5 flex-shrink-0" />
-                  <span className="text-sm">{successMessage}</span>
+                  <span className="text-sm font-tactical">{successMessage}</span>
                 </motion.div>
               )}
             </AnimatePresence>
