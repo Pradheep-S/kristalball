@@ -13,6 +13,7 @@ import {
   InformationCircleIcon
 } from '@heroicons/react/24/outline';
 import toast, { Toaster } from 'react-hot-toast';
+import { authAPI } from '../utils/api';
 
 function Login({ onLogin }) {
   const containerRef = useRef(null);
@@ -61,19 +62,14 @@ function Login({ onLogin }) {
 
   const fetchBases = async () => {
     try {
-      const response = await fetch('http://localhost:5000/api/auth/bases');
-      if (response.ok) {
-        const data = await response.json();
-        const uniqueBases = data.bases || [];
-        setBases(uniqueBases);
-        if (uniqueBases.length > 0) {
-          setFormData(prev => ({
-            ...prev,
-            base_id: uniqueBases[0].id.toString()
-          }));
-        }
-      } else {
-        throw new Error('Failed to fetch bases');
+      const data = await authAPI.getBases();
+      const uniqueBases = data.bases || [];
+      setBases(uniqueBases);
+      if (uniqueBases.length > 0) {
+        setFormData(prev => ({
+          ...prev,
+          base_id: uniqueBases[0].id.toString()
+        }));
       }
     } catch (error) {
       console.error('Failed to fetch bases:', error);
@@ -154,43 +150,31 @@ function Login({ onLogin }) {
     setSuccessMessage("");
 
     try {
-      const endpoint = isSignup ? 'signup' : 'login';
-      const response = await fetch(`http://localhost:5000/api/auth/${endpoint}`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(formData),
-      });
+      const data = isSignup 
+        ? await authAPI.signup(formData)
+        : await authAPI.login(formData);
 
-      const data = await response.json();
-
-      if (response.ok) {
-        if (isSignup) {
-          setSuccessMessage(data.message || "Account created successfully! You can now log in.");
-          toast.success("Account created successfully!");
-          setTimeout(() => {
-            setIsSignup(false);
-            setFormData({
-              username: "",
-              email: "",
-              password: "",
-              confirmPassword: "",
-              role: "logistics_officer",
-              base_id: "1"
-            });
-          }, 2000);
-        } else {
-          toast.success("Login successful!");
-          onLogin(data.token, data.user);
-        }
+      if (isSignup) {
+        setSuccessMessage(data.message || "Account created successfully! You can now log in.");
+        toast.success("Account created successfully!");
+        setTimeout(() => {
+          setIsSignup(false);
+          setFormData({
+            username: "",
+            email: "",
+            password: "",
+            confirmPassword: "",
+            role: "logistics_officer",
+            base_id: "1"
+          });
+        }, 2000);
       } else {
-        setError(data.message || data.error || 'An error occurred');
-        toast.error(data.message || data.error || 'An error occurred');
+        toast.success("Login successful!");
+        onLogin(data.token, data.user);
       }
     } catch (error) {
       console.error('Auth error:', error);
-      const errorMessage = 'Network error. Please check your connection and ensure the backend server is running.';
+      const errorMessage = error.message || 'An unexpected error occurred. Please try again.';
       setError(errorMessage);
       toast.error(errorMessage);
     } finally {
