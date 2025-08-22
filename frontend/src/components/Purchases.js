@@ -1,9 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import AnimatedCard from './common/AnimatedCard';
-import AnimatedButton from './common/AnimatedButton';
-import AnimatedTable from './common/AnimatedTable';
-import AnimatedModal from './common/AnimatedModal';
+import { MilitaryLoader } from './common/MilitaryLoaders';
+import { WeaponIcon, SupplyIcon, ArmorIcon } from './common/MilitaryIcons';
 
 const Purchases = ({ token, user, onNavigate }) => {
   const [purchases, setPurchases] = useState([]);
@@ -29,63 +27,75 @@ const Purchases = ({ token, user, onNavigate }) => {
     const mockPurchases = [
       { 
         id: 1, 
-        item: 'M4A1 Carbine', 
-        category: 'Weapons',
+        item: 'M4A1 TACTICAL CARBINE', 
+        category: 'WEAPONS',
         quantity: 50, 
         cost: 125000, 
         date: '2024-01-15', 
-        vendor: 'Defense Contractor A',
-        status: 'Delivered',
-        priority: 'High',
-        description: 'Standard issue combat rifle for infantry units'
+        vendor: 'ARMAMENT TACTICAL SOLUTIONS',
+        status: 'DEPLOYED',
+        priority: 'CRITICAL',
+        description: 'STANDARD ISSUE COMBAT RIFLE FOR FRONTLINE INFANTRY UNITS'
       },
       { 
         id: 2, 
-        item: 'Communication Radio', 
-        category: 'Communications',
+        item: 'TACTICAL COMMUNICATION RADIO', 
+        category: 'COMMUNICATIONS',
         quantity: 25, 
         cost: 75000, 
         date: '2024-01-14', 
-        vendor: 'Tech Solutions Inc',
-        status: 'Processing',
-        priority: 'Medium',
-        description: 'Long-range tactical communication equipment'
+        vendor: 'MILITARY TECH SOLUTIONS',
+        status: 'PROCESSING',
+        priority: 'HIGH',
+        description: 'LONG-RANGE TACTICAL COMMUNICATION EQUIPMENT'
       },
       { 
         id: 3, 
-        item: 'Medical Kit', 
-        category: 'Medical',
+        item: 'COMBAT MEDICAL KIT', 
+        category: 'MEDICAL',
         quantity: 100, 
         cost: 25000, 
         date: '2024-01-13', 
-        vendor: 'Medical Supply Co',
-        status: 'Delivered',
-        priority: 'High',
-        description: 'Emergency field medical supplies and equipment'
+        vendor: 'TACTICAL MEDICAL SUPPLY',
+        status: 'DEPLOYED',
+        priority: 'HIGH',
+        description: 'EMERGENCY FIELD MEDICAL SUPPLIES AND EQUIPMENT'
       },
       { 
         id: 4, 
-        item: 'Body Armor', 
-        category: 'Protection',
+        item: 'BALLISTIC BODY ARMOR', 
+        category: 'PROTECTION',
         quantity: 75, 
         cost: 187500, 
         date: '2024-01-12', 
-        vendor: 'Armor Tech Ltd',
-        status: 'Pending',
-        priority: 'Critical',
-        description: 'Level IIIA ballistic protection vests'
+        vendor: 'TACTICAL ARMOR SYSTEMS',
+        status: 'PENDING',
+        priority: 'CRITICAL',
+        description: 'LEVEL IIIA BALLISTIC PROTECTION VESTS'
       },
       { 
         id: 5, 
-        item: 'Night Vision Goggles', 
-        category: 'Electronics',
+        item: 'NIGHT VISION GOGGLES', 
+        category: 'ELECTRONICS',
         quantity: 30, 
         cost: 450000, 
         date: '2024-01-11', 
-        vendor: 'Optics International',
-        status: 'Delivered',
-        priority: 'High',
-        description: 'Advanced night vision equipment for special operations'
+        vendor: 'TACTICAL OPTICS INTERNATIONAL',
+        status: 'DEPLOYED',
+        priority: 'HIGH',
+        description: 'ADVANCED NIGHT VISION EQUIPMENT FOR SPECIAL OPERATIONS'
+      },
+      {
+        id: 6,
+        item: 'TACTICAL VEHICLES',
+        category: 'VEHICLES',
+        quantity: 5,
+        cost: 2500000,
+        date: '2024-01-10',
+        vendor: 'MILITARY VEHICLE SOLUTIONS',
+        status: 'PROCESSING',
+        priority: 'CRITICAL',
+        description: 'ARMORED TACTICAL TRANSPORT VEHICLES'
       }
     ];
 
@@ -422,66 +432,6 @@ const Purchases = ({ token, user, onNavigate }) => {
   const categories = ['all', ...new Set(purchases.map(p => p.category))];
 
   // Table columns configuration
-  const tableColumns = [
-    {
-      key: 'item',
-      header: 'Item',
-      render: (value, item) => (
-        <div className="flex flex-col">
-          <span className="font-semibold text-white">{value}</span>
-          <span className="text-sm text-white/60">{item.description}</span>
-        </div>
-      )
-    },
-    {
-      key: 'category',
-      header: 'Category',
-      render: (value) => (
-        <span className="px-2 py-1 bg-blue-500/20 text-blue-300 rounded-md text-sm font-medium">
-          {value}
-        </span>
-      )
-    },
-    {
-      key: 'quantity',
-      header: 'Quantity',
-      render: (value) => (
-        <span className="text-white font-medium">{value}</span>
-      )
-    },
-    {
-      key: 'cost',
-      header: 'Cost',
-      render: (value) => (
-        <span className="text-green-400 font-bold">${value.toLocaleString()}</span>
-      )
-    },
-    {
-      key: 'status',
-      header: 'Status',
-      render: (value) => {
-        const statusColors = {
-          'Delivered': 'bg-green-500/20 text-green-300 border-green-400/30',
-          'Processing': 'bg-yellow-500/20 text-yellow-300 border-yellow-400/30',
-          'Pending': 'bg-orange-500/20 text-orange-300 border-orange-400/30',
-          'Critical': 'bg-red-500/20 text-red-300 border-red-400/30'
-        };
-        return (
-          <span className={`px-3 py-1 rounded-full text-sm font-medium border ${statusColors[value] || 'bg-gray-500/20 text-gray-300'}`}>
-            {value}
-          </span>
-        );
-      }
-    },
-    {
-      key: 'vendor',
-      header: 'Vendor',
-      render: (value) => (
-        <span className="text-white/80">{value}</span>
-      )
-    }
-  ];
-
   // Statistics calculations
   const stats = {
     totalPurchases: purchases.length,
@@ -511,28 +461,78 @@ const Purchases = ({ token, user, onNavigate }) => {
 
   return (
     <motion.div 
-      className="min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-gray-900"
+      className="min-h-screen bg-military-950 text-military-50"
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.6 }}
     >
       <div className="container mx-auto px-6 py-8">
-        {/* Header Section */}
+        {/* Tactical Header Section */}
         <motion.div 
-          className="mb-8"
+          className="mb-8 p-6 bg-gradient-to-r from-tactical-900/30 to-military-900/30 rounded-lg border border-tactical-600/30 backdrop-blur-sm"
           initial={{ opacity: 0, y: -30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.2, duration: 0.6 }}
         >
-          <h1 className="text-5xl font-bold text-white mb-3 bg-gradient-to-r from-white to-gray-200 bg-clip-text text-transparent">
-            Purchases Management
-          </h1>
-          <p className="text-gray-300 text-lg">
-            Comprehensive military asset procurement tracking and management system
-          </p>
+          <div className="flex items-center gap-4 mb-4">
+            <div className="p-3 bg-tactical-600/20 rounded-lg">
+              <WeaponIcon className="w-8 h-8 text-tactical-400" />
+            </div>
+            <div>
+              <h1 className="text-4xl font-bold text-tactical-300 font-orbitron tracking-wider">
+                ARSENAL PROCUREMENT
+              </h1>
+              <p className="text-military-400 text-lg font-rajdhani">
+                TACTICAL ASSET ACQUISITION & LOGISTICS COMMAND
+              </p>
+            </div>
+          </div>
+          
+          {/* Mission Status Dashboard */}
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+            <div className="bg-tactical-900/40 rounded-lg p-4 border border-tactical-600/20">
+              <div className="flex items-center gap-2">
+                <SupplyIcon className="w-5 h-5 text-blue-400" />
+                <span className="text-military-300 font-semibold">TOTAL ASSETS</span>
+              </div>
+              <p className="text-2xl font-bold text-blue-400 font-orbitron mt-1">
+                {purchases.reduce((sum, p) => sum + p.quantity, 0)}
+              </p>
+            </div>
+            
+            <div className="bg-tactical-900/40 rounded-lg p-4 border border-tactical-600/20">
+              <div className="flex items-center gap-2">
+                <ArmorIcon className="w-5 h-5 text-green-400" />
+                <span className="text-military-300 font-semibold">DEPLOYED</span>
+              </div>
+              <p className="text-2xl font-bold text-green-400 font-orbitron mt-1">
+                {purchases.filter(p => p.status === 'DEPLOYED').length}
+              </p>
+            </div>
+            
+            <div className="bg-tactical-900/40 rounded-lg p-4 border border-tactical-600/20">
+              <div className="flex items-center gap-2">
+                <WeaponIcon className="w-5 h-5 text-yellow-400" />
+                <span className="text-military-300 font-semibold">PROCESSING</span>
+              </div>
+              <p className="text-2xl font-bold text-yellow-400 font-orbitron mt-1">
+                {purchases.filter(p => p.status === 'PROCESSING').length}
+              </p>
+            </div>
+            
+            <div className="bg-tactical-900/40 rounded-lg p-4 border border-tactical-600/20">
+              <div className="flex items-center gap-2">
+                <SupplyIcon className="w-5 h-5 text-tactical-400" />
+                <span className="text-military-300 font-semibold">TOTAL VALUE</span>
+              </div>
+              <p className="text-2xl font-bold text-tactical-400 font-orbitron mt-1">
+                ${purchases.reduce((sum, p) => sum + p.cost, 0).toLocaleString()}
+              </p>
+            </div>
+          </div>
         </motion.div>
 
-        {/* Action Bar */}
+        {/* Tactical Action Bar */}
         <motion.div 
           className="mb-8 flex flex-col lg:flex-row gap-4 items-start lg:items-center justify-between"
           initial={{ opacity: 0, y: 20 }}
@@ -540,17 +540,17 @@ const Purchases = ({ token, user, onNavigate }) => {
           transition={{ delay: 0.3, duration: 0.6 }}
         >
           <div className="flex flex-col sm:flex-row gap-4 flex-1">
-            {/* Search Bar */}
+            {/* Tactical Search Bar */}
             <div className="relative flex-1">
               <input
                 type="text"
-                placeholder="Search purchases, vendors..."
+                placeholder="SEARCH ASSETS, VENDORS, EQUIPMENT..."
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
-                className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-xl text-white placeholder-white/60 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent backdrop-blur-sm"
+                className="w-full px-4 py-3 bg-tactical-900/30 border border-tactical-600/30 rounded-lg text-military-50 placeholder-military-400 focus:outline-none focus:ring-2 focus:ring-tactical-500 focus:border-tactical-500 backdrop-blur-sm font-rajdhani"
               />
               <div className="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none">
-                <svg className="h-5 w-5 text-white/60" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <svg className="h-5 w-5 text-tactical-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
                 </svg>
               </div>
@@ -560,401 +560,402 @@ const Purchases = ({ token, user, onNavigate }) => {
             <select
               value={selectedCategory}
               onChange={(e) => setSelectedCategory(e.target.value)}
-              className="px-4 py-3 bg-white/10 border border-white/20 rounded-xl text-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent backdrop-blur-sm"
+              className="px-4 py-3 bg-tactical-900/30 border border-tactical-600/30 rounded-lg text-military-50 focus:outline-none focus:ring-2 focus:ring-tactical-500 backdrop-blur-sm font-rajdhani"
             >
               {categories.map(category => (
-                <option key={category} value={category} className="bg-slate-800 text-white">
-                  {category === 'all' ? 'All Categories' : category}
+                <option key={category} value={category} className="bg-tactical-900 text-military-50">
+                  {category === 'all' ? 'ALL CATEGORIES' : category.toUpperCase()}
                 </option>
               ))}
             </select>
           </div>
 
           <div className="flex gap-3">
-            <AnimatedButton
-              variant="primary"
-              size="md"
+            <button
               onClick={() => setShowNewPurchaseModal(true)}
+              className="px-6 py-3 bg-gradient-to-r from-tactical-600 to-tactical-700 hover:from-tactical-500 hover:to-tactical-600 text-military-50 rounded-lg font-semibold font-rajdhani transition-all duration-300 flex items-center gap-2 border border-tactical-500/20"
             >
-              <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
-              </svg>
-              New Purchase
-            </AnimatedButton>
+              <WeaponIcon className="w-5 h-5" />
+              NEW PROCUREMENT
+            </button>
             
-            <AnimatedButton
-              variant="secondary"
-              size="md"
+            <button
               onClick={() => setShowExportModal(true)}
+              className="px-6 py-3 bg-gradient-to-r from-military-600 to-military-700 hover:from-military-500 hover:to-military-600 text-military-50 rounded-lg font-semibold font-rajdhani transition-all duration-300 flex items-center gap-2 border border-military-500/20"
             >
-              <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-              </svg>
-              Export
-            </AnimatedButton>
+              <SupplyIcon className="w-5 h-5" />
+              EXPORT INTEL
+            </button>
           </div>
         </motion.div>
 
-        {/* Statistics Cards */}
-        <motion.div 
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-6 mb-8"
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.4, duration: 0.6 }}
-        >
-          <AnimatedCard 
-            delay={100}
-            className="bg-gradient-to-br from-blue-500/20 to-blue-600/20 backdrop-blur-sm rounded-xl p-6 border border-blue-400/30 hover:border-blue-400/50 transition-all duration-300"
-          >
-            <div className="flex items-center justify-between">
-              <div>
-                <p className="text-blue-300 text-sm font-medium">Total Purchases</p>
-                <p className="text-white text-3xl font-bold">{stats.totalPurchases}</p>
-              </div>
-              <div className="bg-blue-500/30 rounded-full p-3">
-                <svg className="w-6 h-6 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
-                </svg>
-              </div>
-            </div>
-          </AnimatedCard>
-
-          <AnimatedCard 
-            delay={200}
-            className="bg-gradient-to-br from-green-500/20 to-green-600/20 backdrop-blur-sm rounded-xl p-6 border border-green-400/30 hover:border-green-400/50 transition-all duration-300"
-          >
-            <div className="flex items-center justify-between">
-              <div>
-                <p className="text-green-300 text-sm font-medium">Total Value</p>
-                <p className="text-white text-3xl font-bold">${(stats.totalValue / 1000000).toFixed(1)}M</p>
-              </div>
-              <div className="bg-green-500/30 rounded-full p-3">
-                <svg className="w-6 h-6 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1" />
-                </svg>
-              </div>
-            </div>
-          </AnimatedCard>
-
-          <AnimatedCard 
-            delay={300}
-            className="bg-gradient-to-br from-purple-500/20 to-purple-600/20 backdrop-blur-sm rounded-xl p-6 border border-purple-400/30 hover:border-purple-400/50 transition-all duration-300"
-          >
-            <div className="flex items-center justify-between">
-              <div>
-                <p className="text-purple-300 text-sm font-medium">Total Items</p>
-                <p className="text-white text-3xl font-bold">{stats.totalItems}</p>
-              </div>
-              <div className="bg-purple-500/30 rounded-full p-3">
-                <svg className="w-6 h-6 text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4" />
-                </svg>
-              </div>
-            </div>
-          </AnimatedCard>
-
-          <AnimatedCard 
-            delay={400}
-            className="bg-gradient-to-br from-orange-500/20 to-orange-600/20 backdrop-blur-sm rounded-xl p-6 border border-orange-400/30 hover:border-orange-400/50 transition-all duration-300"
-          >
-            <div className="flex items-center justify-between">
-              <div>
-                <p className="text-orange-300 text-sm font-medium">Avg Cost/Item</p>
-                <p className="text-white text-3xl font-bold">${(stats.avgCostPerItem / 1000).toFixed(1)}K</p>
-              </div>
-              <div className="bg-orange-500/30 rounded-full p-3">
-                <svg className="w-6 h-6 text-orange-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
-                </svg>
-              </div>
-            </div>
-          </AnimatedCard>
-
-          <AnimatedCard 
-            animationType="framer" 
-            delay={500}
-            className="bg-gradient-to-br from-emerald-500/20 to-emerald-600/20 backdrop-blur-sm rounded-xl p-6 border border-emerald-400/30 hover:border-emerald-400/50 transition-all duration-300"
-          >
-            <div className="flex items-center justify-between">
-              <div>
-                <p className="text-emerald-300 text-sm font-medium">Delivered</p>
-                <p className="text-white text-3xl font-bold">{stats.deliveredCount}</p>
-              </div>
-              <div className="bg-emerald-500/30 rounded-full p-3">
-                <svg className="w-6 h-6 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                </svg>
-              </div>
-            </div>
-          </AnimatedCard>
-
-          <AnimatedCard 
-            animationType="framer" 
-            delay={600}
-            className="bg-gradient-to-br from-yellow-500/20 to-yellow-600/20 backdrop-blur-sm rounded-xl p-6 border border-yellow-400/30 hover:border-yellow-400/50 transition-all duration-300"
-          >
-            <div className="flex items-center justify-between">
-              <div>
-                <p className="text-yellow-300 text-sm font-medium">Pending</p>
-                <p className="text-white text-3xl font-bold">{stats.pendingCount}</p>
-              </div>
-              <div className="bg-yellow-500/30 rounded-full p-3">
-                <svg className="w-6 h-6 text-yellow-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
-                </svg>
-              </div>
-            </div>
-          </AnimatedCard>
-        </motion.div>
-
-        {/* Main Content Table */}
+        {/* Tactical Statistics Cards - Already included in header */}
+        
+        {/* Main Arsenal Data Table */}
         <motion.div
           initial={{ opacity: 0, y: 40 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.5, duration: 0.6 }}
+          className="bg-tactical-900/20 rounded-lg border border-tactical-600/30 backdrop-blur-sm overflow-hidden"
         >
-          <AnimatedTable
-            data={filteredPurchases}
-            columns={tableColumns}
-            loading={false}
-            onRowClick={(item) => console.log('Selected item:', item)}
-            emptyMessage="No purchases found matching your criteria"
-            className="shadow-2xl"
-          />
+          <div className="p-6">
+            <div className="flex items-center gap-3 mb-6">
+              <ArmorIcon className="w-6 h-6 text-tactical-400" />
+              <h2 className="text-xl font-bold text-tactical-300 font-orbitron">ARSENAL INVENTORY</h2>
+              <div className="ml-auto flex items-center gap-2 text-military-400 font-rajdhani">
+                <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
+                REAL-TIME TRACKING
+              </div>
+            </div>
+            
+            <div className="overflow-x-auto">
+              <table className="w-full">
+                <thead>
+                  <tr className="border-b border-tactical-600/30">
+                    <th className="text-left py-4 px-4 text-tactical-300 font-semibold font-rajdhani">ASSET</th>
+                    <th className="text-left py-4 px-4 text-tactical-300 font-semibold font-rajdhani">CATEGORY</th>
+                    <th className="text-left py-4 px-4 text-tactical-300 font-semibold font-rajdhani">QTY</th>
+                    <th className="text-left py-4 px-4 text-tactical-300 font-semibold font-rajdhani">VALUE</th>
+                    <th className="text-left py-4 px-4 text-tactical-300 font-semibold font-rajdhani">DATE</th>
+                    <th className="text-left py-4 px-4 text-tactical-300 font-semibold font-rajdhani">SUPPLIER</th>
+                    <th className="text-left py-4 px-4 text-tactical-300 font-semibold font-rajdhani">STATUS</th>
+                    <th className="text-left py-4 px-4 text-tactical-300 font-semibold font-rajdhani">ACTIONS</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {filteredPurchases.map((purchase, index) => (
+                    <motion.tr
+                      key={purchase.id}
+                      initial={{ opacity: 0, x: -20 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      transition={{ delay: index * 0.1 }}
+                      className="border-b border-tactical-600/20 hover:bg-tactical-800/30 transition-colors"
+                    >
+                      <td className="py-4 px-4">
+                        <div className="flex items-center gap-3">
+                          <div className="p-2 bg-tactical-600/20 rounded">
+                            {purchase.category === 'WEAPONS' && <WeaponIcon className="w-4 h-4 text-tactical-400" />}
+                            {purchase.category === 'PROTECTION' && <ArmorIcon className="w-4 h-4 text-tactical-400" />}
+                            {purchase.category !== 'WEAPONS' && purchase.category !== 'PROTECTION' && <SupplyIcon className="w-4 h-4 text-tactical-400" />}
+                          </div>
+                          <div>
+                            <p className="text-military-100 font-semibold font-rajdhani">{purchase.item}</p>
+                            <p className="text-military-400 text-sm">{purchase.description}</p>
+                          </div>
+                        </div>
+                      </td>
+                      <td className="py-4 px-4">
+                        <span className="px-3 py-1 bg-tactical-600/20 text-tactical-300 rounded-full text-sm font-rajdhani">
+                          {purchase.category}
+                        </span>
+                      </td>
+                      <td className="py-4 px-4 text-military-100 font-orbitron">{purchase.quantity}</td>
+                      <td className="py-4 px-4 text-tactical-400 font-bold font-orbitron">${purchase.cost.toLocaleString()}</td>
+                      <td className="py-4 px-4 text-military-300 font-rajdhani">{purchase.date}</td>
+                      <td className="py-4 px-4 text-military-300 font-rajdhani">{purchase.vendor}</td>
+                      <td className="py-4 px-4">
+                        <span className={`px-3 py-1 rounded-full text-sm font-semibold font-rajdhani ${
+                          purchase.status === 'DEPLOYED' ? 'bg-green-500/20 text-green-400' :
+                          purchase.status === 'PROCESSING' ? 'bg-yellow-500/20 text-yellow-400' :
+                          'bg-red-500/20 text-red-400'
+                        }`}>
+                          {purchase.status}
+                        </span>
+                      </td>
+                      <td className="py-4 px-4">
+                        <div className="flex gap-2">
+                          <button className="p-2 bg-tactical-600/20 hover:bg-tactical-600/40 rounded text-tactical-400 transition-colors">
+                            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" />
+                            </svg>
+                          </button>
+                          <button className="p-2 bg-red-500/20 hover:bg-red-500/40 rounded text-red-400 transition-colors">
+                            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+                            </svg>
+                          </button>
+                        </div>
+                      </td>
+                    </motion.tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </div>
         </motion.div>
 
-        {/* Quick Actions Footer */}
+        {/* Tactical Operations Footer */}
         <motion.div 
           className="mt-8 flex flex-col sm:flex-row gap-4 justify-between items-center"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.6, duration: 0.6 }}
         >
-          <div className="text-white/60 text-sm">
-            Showing {filteredPurchases.length} of {purchases.length} purchases
+          <div className="text-military-400 text-sm font-rajdhani">
+            DISPLAYING {filteredPurchases.length} OF {purchases.length} TACTICAL ASSETS
           </div>
           
           <div className="flex gap-3">
-            <AnimatedButton
-              variant="outline"
-              size="sm"
+            <button
               onClick={() => onNavigate && onNavigate('dashboard')}
+              className="px-4 py-2 bg-military-700/40 hover:bg-military-600/40 border border-military-600/30 text-military-300 rounded-lg font-rajdhani transition-colors"
             >
-              Back to Dashboard
-            </AnimatedButton>
+              ← COMMAND CENTER
+            </button>
             
-            <AnimatedButton
-              variant="success"
-              size="sm"
+            <button
               onClick={handleGenerateReport}
-              loading={reportLoading}
+              disabled={reportLoading}
+              className="px-4 py-2 bg-gradient-to-r from-tactical-600 to-tactical-700 hover:from-tactical-500 hover:to-tactical-600 text-military-50 rounded-lg font-rajdhani transition-all duration-300 flex items-center gap-2 disabled:opacity-50"
             >
-              Generate Report
-            </AnimatedButton>
+              {reportLoading ? (
+                <>
+                  <MilitaryLoader className="w-4 h-4" />
+                  GENERATING...
+                </>
+              ) : (
+                <>
+                  <SupplyIcon className="w-4 h-4" />
+                  GENERATE REPORT
+                </>
+              )}
+            </button>
           </div>
         </motion.div>
       </div>
 
-      {/* New Purchase Modal */}
-      <AnimatedModal
-        isOpen={showNewPurchaseModal}
-        onClose={() => setShowNewPurchaseModal(false)}
-        title="Add New Purchase"
-        size="lg"
-      >
-        <div className="space-y-6">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            {/* Item Name */}
-            <div>
-              <label className="block text-sm font-medium text-white/80 mb-2">
-                Item Name *
-              </label>
-              <input
-                type="text"
-                value={newPurchase.item}
-                onChange={(e) => handleInputChange('item', e.target.value)}
-                className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-xl text-white placeholder-white/60 focus:outline-none focus:ring-2 focus:ring-blue-500"
-                placeholder="Enter item name"
-                required
-              />
-            </div>
-
-            {/* Category */}
-            <div>
-              <label className="block text-sm font-medium text-white/80 mb-2">
-                Category *
-              </label>
-              <select
-                value={newPurchase.category}
-                onChange={(e) => handleInputChange('category', e.target.value)}
-                className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-xl text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
-              >
-                <option value="Weapons" className="bg-slate-800">Weapons</option>
-                <option value="Communications" className="bg-slate-800">Communications</option>
-                <option value="Medical" className="bg-slate-800">Medical</option>
-                <option value="Protection" className="bg-slate-800">Protection</option>
-                <option value="Electronics" className="bg-slate-800">Electronics</option>
-                <option value="Vehicles" className="bg-slate-800">Vehicles</option>
-                <option value="Supplies" className="bg-slate-800">Supplies</option>
-              </select>
-            </div>
-
-            {/* Quantity */}
-            <div>
-              <label className="block text-sm font-medium text-white/80 mb-2">
-                Quantity *
-              </label>
-              <input
-                type="number"
-                value={newPurchase.quantity}
-                onChange={(e) => handleInputChange('quantity', e.target.value)}
-                className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-xl text-white placeholder-white/60 focus:outline-none focus:ring-2 focus:ring-blue-500"
-                placeholder="Enter quantity"
-                min="1"
-                required
-              />
-            </div>
-
-            {/* Cost */}
-            <div>
-              <label className="block text-sm font-medium text-white/80 mb-2">
-                Cost (USD) *
-              </label>
-              <input
-                type="number"
-                value={newPurchase.cost}
-                onChange={(e) => handleInputChange('cost', e.target.value)}
-                className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-xl text-white placeholder-white/60 focus:outline-none focus:ring-2 focus:ring-blue-500"
-                placeholder="Enter cost in USD"
-                min="0"
-                step="0.01"
-                required
-              />
-            </div>
-
-            {/* Vendor */}
-            <div>
-              <label className="block text-sm font-medium text-white/80 mb-2">
-                Vendor *
-              </label>
-              <input
-                type="text"
-                value={newPurchase.vendor}
-                onChange={(e) => handleInputChange('vendor', e.target.value)}
-                className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-xl text-white placeholder-white/60 focus:outline-none focus:ring-2 focus:ring-blue-500"
-                placeholder="Enter vendor name"
-                required
-              />
-            </div>
-
-            {/* Priority */}
-            <div>
-              <label className="block text-sm font-medium text-white/80 mb-2">
-                Priority
-              </label>
-              <select
-                value={newPurchase.priority}
-                onChange={(e) => handleInputChange('priority', e.target.value)}
-                className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-xl text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
-              >
-                <option value="Low" className="bg-slate-800">Low</option>
-                <option value="Medium" className="bg-slate-800">Medium</option>
-                <option value="High" className="bg-slate-800">High</option>
-                <option value="Critical" className="bg-slate-800">Critical</option>
-              </select>
-            </div>
-          </div>
-
-          {/* Description */}
-          <div>
-            <label className="block text-sm font-medium text-white/80 mb-2">
-              Description
-            </label>
-            <textarea
-              value={newPurchase.description}
-              onChange={(e) => handleInputChange('description', e.target.value)}
-              rows="3"
-              className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-xl text-white placeholder-white/60 focus:outline-none focus:ring-2 focus:ring-blue-500 resize-none"
-              placeholder="Enter description (optional)"
-            />
-          </div>
-
-          {/* Action Buttons */}
-          <div className="flex gap-4 justify-end pt-4 border-t border-white/20">
-            <AnimatedButton
-              variant="secondary"
-              onClick={() => setShowNewPurchaseModal(false)}
-            >
-              Cancel
-            </AnimatedButton>
-            <AnimatedButton
-              variant="success"
-              onClick={handleAddNewPurchase}
-            >
-              Add Purchase
-            </AnimatedButton>
-          </div>
-        </div>
-      </AnimatedModal>
-
-      {/* Export Modal */}
-      <AnimatedModal
-        isOpen={showExportModal}
-        onClose={() => setShowExportModal(false)}
-        title="Export Purchase Data"
-        size="md"
-      >
-        <div className="space-y-6">
-          <p className="text-white/80 text-center">
-            Choose your preferred export format for the purchase data.
-          </p>
-          
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            <div 
-              className="p-6 bg-white/5 rounded-xl border border-white/20 hover:border-green-400/50 cursor-pointer transition-all group"
-              onClick={() => handleExportData('csv')}
-            >
-              <div className="text-center">
-                <div className="w-16 h-16 mx-auto mb-4 bg-green-500/20 rounded-full flex items-center justify-center group-hover:bg-green-500/30">
-                  <svg className="w-8 h-8 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 17v-2m3 2v-4m3 4v-6m2 10H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-                  </svg>
+      {/* Tactical Procurement Modal */}
+      {showNewPurchaseModal && (
+        <div className="fixed inset-0 bg-military-950/90 backdrop-blur-sm z-50 flex items-center justify-center p-4">
+          <div className="bg-tactical-900/90 rounded-lg border border-tactical-600/30 max-w-2xl w-full max-h-[90vh] overflow-y-auto">
+            <div className="p-6">
+              <div className="flex items-center justify-between mb-6">
+                <div className="flex items-center gap-3">
+                  <WeaponIcon className="w-6 h-6 text-tactical-400" />
+                  <h2 className="text-xl font-bold text-tactical-300 font-orbitron">
+                    NEW ASSET PROCUREMENT
+                  </h2>
                 </div>
-                <h3 className="text-lg font-semibold text-white mb-2">CSV Export</h3>
-                <p className="text-sm text-white/60">
-                  Download as CSV file for spreadsheet applications
-                </p>
+                <button
+                  onClick={() => setShowNewPurchaseModal(false)}
+                  className="p-2 hover:bg-tactical-700/40 rounded text-military-400 hover:text-military-200 transition-colors"
+                >
+                  <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                  </svg>
+                </button>
               </div>
-            </div>
 
-            <div 
-              className="p-6 bg-white/5 rounded-xl border border-white/20 hover:border-red-400/50 cursor-pointer transition-all group"
-              onClick={() => handleExportData('pdf')}
-            >
-              <div className="text-center">
-                <div className="w-16 h-16 mx-auto mb-4 bg-red-500/20 rounded-full flex items-center justify-center group-hover:bg-red-500/30">
-                  <svg className="w-8 h-8 text-red-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-                  </svg>
+              <div className="space-y-6">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  {/* Asset Name */}
+                  <div>
+                    <label className="block text-sm font-medium text-tactical-300 mb-2 font-rajdhani">
+                      ASSET NAME *
+                    </label>
+                    <input
+                      type="text"
+                      value={newPurchase.item}
+                      onChange={(e) => handleInputChange('item', e.target.value)}
+                      className="w-full px-4 py-3 bg-tactical-800/40 border border-tactical-600/30 rounded-lg text-military-50 placeholder-military-400 focus:outline-none focus:ring-2 focus:ring-tactical-500 font-rajdhani"
+                      placeholder="ENTER ASSET DESIGNATION"
+                      required
+                    />
+                  </div>
+
+                  {/* Category */}
+                  <div>
+                    <label className="block text-sm font-medium text-tactical-300 mb-2 font-rajdhani">
+                      CATEGORY *
+                    </label>
+                    <select
+                      value={newPurchase.category}
+                      onChange={(e) => handleInputChange('category', e.target.value)}
+                      className="w-full px-4 py-3 bg-tactical-800/40 border border-tactical-600/30 rounded-lg text-military-50 focus:outline-none focus:ring-2 focus:ring-tactical-500 font-rajdhani"
+                    >
+                      <option value="WEAPONS" className="bg-tactical-900">WEAPONS</option>
+                      <option value="COMMUNICATIONS" className="bg-tactical-900">COMMUNICATIONS</option>
+                      <option value="MEDICAL" className="bg-tactical-900">MEDICAL</option>
+                      <option value="PROTECTION" className="bg-tactical-900">PROTECTION</option>
+                      <option value="ELECTRONICS" className="bg-tactical-900">ELECTRONICS</option>
+                      <option value="VEHICLES" className="bg-tactical-900">VEHICLES</option>
+                      <option value="SUPPLIES" className="bg-tactical-900">SUPPLIES</option>
+                    </select>
+                  </div>
+
+                  {/* Quantity */}
+                  <div>
+                    <label className="block text-sm font-medium text-tactical-300 mb-2 font-rajdhani">
+                      QUANTITY *
+                    </label>
+                    <input
+                      type="number"
+                      value={newPurchase.quantity}
+                      onChange={(e) => handleInputChange('quantity', e.target.value)}
+                      className="w-full px-4 py-3 bg-tactical-800/40 border border-tactical-600/30 rounded-lg text-military-50 placeholder-military-400 focus:outline-none focus:ring-2 focus:ring-tactical-500 font-orbitron"
+                      placeholder="000"
+                      min="1"
+                      required
+                    />
+                  </div>
+
+                  {/* Cost */}
+                  <div>
+                    <label className="block text-sm font-medium text-tactical-300 mb-2 font-rajdhani">
+                      UNIT COST (USD) *
+                    </label>
+                    <input
+                      type="number"
+                      value={newPurchase.cost}
+                      onChange={(e) => handleInputChange('cost', e.target.value)}
+                      className="w-full px-4 py-3 bg-tactical-800/40 border border-tactical-600/30 rounded-lg text-military-50 placeholder-military-400 focus:outline-none focus:ring-2 focus:ring-tactical-500 font-orbitron"
+                      placeholder="0.00"
+                      min="0"
+                      step="0.01"
+                      required
+                    />
+                  </div>
+
+                  {/* Vendor */}
+                  <div>
+                    <label className="block text-sm font-medium text-tactical-300 mb-2 font-rajdhani">
+                      SUPPLIER *
+                    </label>
+                    <input
+                      type="text"
+                      value={newPurchase.vendor}
+                      onChange={(e) => handleInputChange('vendor', e.target.value)}
+                      className="w-full px-4 py-3 bg-tactical-800/40 border border-tactical-600/30 rounded-lg text-military-50 placeholder-military-400 focus:outline-none focus:ring-2 focus:ring-tactical-500 font-rajdhani"
+                      placeholder="TACTICAL CONTRACTOR NAME"
+                    />
+                  </div>
+
+                  {/* Priority */}
+                  <div>
+                    <label className="block text-sm font-medium text-tactical-300 mb-2 font-rajdhani">
+                      PRIORITY LEVEL
+                    </label>
+                    <select
+                      value={newPurchase.priority}
+                      onChange={(e) => handleInputChange('priority', e.target.value)}
+                      className="w-full px-4 py-3 bg-tactical-800/40 border border-tactical-600/30 rounded-lg text-military-50 focus:outline-none focus:ring-2 focus:ring-tactical-500 font-rajdhani"
+                    >
+                      <option value="LOW" className="bg-tactical-900">LOW</option>
+                      <option value="MEDIUM" className="bg-tactical-900">MEDIUM</option>
+                      <option value="HIGH" className="bg-tactical-900">HIGH</option>
+                      <option value="CRITICAL" className="bg-tactical-900">CRITICAL</option>
+                    </select>
+                  </div>
                 </div>
-                <h3 className="text-lg font-semibold text-white mb-2">PDF Report</h3>
-                <p className="text-sm text-white/60">
-                  Generate a formatted PDF report
-                </p>
+
+                {/* Description */}
+                <div>
+                  <label className="block text-sm font-medium text-tactical-300 mb-2 font-rajdhani">
+                    MISSION DESCRIPTION
+                  </label>
+                  <textarea
+                    value={newPurchase.description}
+                    onChange={(e) => handleInputChange('description', e.target.value)}
+                    rows="3"
+                    className="w-full px-4 py-3 bg-tactical-800/40 border border-tactical-600/30 rounded-lg text-military-50 placeholder-military-400 focus:outline-none focus:ring-2 focus:ring-tactical-500 resize-none font-rajdhani"
+                    placeholder="ENTER TACTICAL ASSET DESCRIPTION (OPTIONAL)"
+                  />
+                </div>
+
+                {/* Action Buttons */}
+                <div className="flex gap-4 justify-end pt-4 border-t border-tactical-600/30">
+                  <button
+                    onClick={() => setShowNewPurchaseModal(false)}
+                    className="px-6 py-3 bg-military-700/40 hover:bg-military-600/40 border border-military-600/30 text-military-300 rounded-lg font-rajdhani transition-colors"
+                  >
+                    CANCEL
+                  </button>
+                  <button
+                    onClick={handleAddNewPurchase}
+                    className="px-6 py-3 bg-gradient-to-r from-tactical-600 to-tactical-700 hover:from-tactical-500 hover:to-tactical-600 text-military-50 rounded-lg font-rajdhani transition-all duration-300 flex items-center gap-2"
+                  >
+                    <WeaponIcon className="w-4 h-4" />
+                    AUTHORIZE PROCUREMENT
+                  </button>
+                </div>
               </div>
             </div>
           </div>
+        </div>
+      )}
 
-          <div className="flex justify-center pt-4 border-t border-white/20">
-            <AnimatedButton
-              variant="secondary"
-              onClick={() => setShowExportModal(false)}
-            >
-              Cancel
-            </AnimatedButton>
+      {/* Tactical Export Modal */}
+      {showExportModal && (
+        <div className="fixed inset-0 bg-military-950/90 backdrop-blur-sm z-50 flex items-center justify-center p-4">
+          <div className="bg-tactical-900/90 rounded-lg border border-tactical-600/30 max-w-md w-full">
+            <div className="p-6">
+              <div className="flex items-center justify-between mb-6">
+                <div className="flex items-center gap-3">
+                  <SupplyIcon className="w-6 h-6 text-tactical-400" />
+                  <h2 className="text-xl font-bold text-tactical-300 font-orbitron">
+                    EXPORT INTEL DATA
+                  </h2>
+                </div>
+                <button
+                  onClick={() => setShowExportModal(false)}
+                  className="p-2 hover:bg-tactical-700/40 rounded text-military-400 hover:text-military-200 transition-colors"
+                >
+                  <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                  </svg>
+                </button>
+              </div>
+
+              <div className="space-y-6">
+                <p className="text-military-300 text-center font-rajdhani">
+                  SELECT EXPORT FORMAT FOR TACTICAL ASSET DATA
+                </p>
+                
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  <div 
+                    className="p-6 bg-tactical-800/40 rounded-lg border border-tactical-600/30 hover:border-green-400/50 cursor-pointer transition-all group"
+                    onClick={() => handleExportData('csv')}
+                  >
+                    <div className="text-center">
+                      <div className="w-16 h-16 mx-auto mb-4 bg-green-500/20 rounded-full flex items-center justify-center group-hover:bg-green-500/30">
+                        <SupplyIcon className="w-8 h-8 text-green-400" />
+                      </div>
+                      <h3 className="text-lg font-semibold text-military-100 mb-2 font-orbitron">CSV EXPORT</h3>
+                      <p className="text-sm text-military-400 font-rajdhani">
+                        DATA SHEET FORMAT
+                      </p>
+                    </div>
+                  </div>
+
+                  <div 
+                    className="p-6 bg-tactical-800/40 rounded-lg border border-tactical-600/30 hover:border-red-400/50 cursor-pointer transition-all group"
+                    onClick={() => handleExportData('pdf')}
+                  >
+                    <div className="text-center">
+                      <div className="w-16 h-16 mx-auto mb-4 bg-red-500/20 rounded-full flex items-center justify-center group-hover:bg-red-500/30">
+                        <ArmorIcon className="w-8 h-8 text-red-400" />
+                      </div>
+                      <h3 className="text-lg font-semibold text-military-100 mb-2 font-orbitron">PDF REPORT</h3>
+                      <p className="text-sm text-military-400 font-rajdhani">
+                        TACTICAL BRIEFING
+                      </p>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="flex justify-center pt-4 border-t border-tactical-600/30">
+                  <button
+                    onClick={() => setShowExportModal(false)}
+                    className="px-6 py-3 bg-military-700/40 hover:bg-military-600/40 border border-military-600/30 text-military-300 rounded-lg font-rajdhani transition-colors"
+                  >
+                    CANCEL
+                  </button>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
-      </AnimatedModal>
+      )}
     </motion.div>
   );
 };

@@ -1,18 +1,269 @@
+@import url('https://fonts.googleapis.com/css2?family=Rajdhani:wght@300;400;500;600;700&family=Orbitron:wght@400;500;600;700;800;900&family=Play:wght@400;700&family=Exo+2:wght@100;200;300;400;500;600;700;800;900&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
+/* Military Theme Custom Styles */
+@layer base {
+  * {
+    border-color: rgb(86 103 76 / 0.3); /* tactical-600 with opacity */
+  }
+  
+  body {
+    margin: 0;
+    font-family: 'Play', 'Exo 2', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+      'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+      sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    background-color: rgb(42 47 38 / 1); /* military-900 */
+    color: rgb(213 220 210 / 1); /* desert-200 */
+  }
 
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  code {
+    font-family: 'Rajdhani', 'Orbitron', source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+      monospace;
+  }
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+@layer components {
+  /* Military Button Variants */
+  .btn-military {
+    @apply bg-gradient-tactical hover:shadow-military-lg text-desert-100 shadow-military hover:shadow-military-xl transition-all duration-300 border border-military-600 font-tactical tracking-wide;
+  }
+  
+  .btn-military-light {
+    @apply bg-gradient-desert hover:shadow-military text-military-900 shadow-military hover:shadow-military-lg transition-all duration-300 border border-desert-600 font-tactical tracking-wide;
+  }
+  
+  .btn-military-outline {
+    @apply border-2 border-accent-light text-accent-light hover:bg-accent-light hover:text-military-900 shadow-military hover:shadow-military-lg transition-all duration-300 font-tactical tracking-wide;
+  }
+
+  .btn-military-danger {
+    @apply bg-gradient-to-br from-red-700 to-red-900 hover:from-red-800 hover:to-red-950 text-desert-100 shadow-military hover:shadow-military-lg transition-all duration-300 border border-red-600 font-tactical tracking-wide;
+  }
+
+  /* Military Card Styles */
+  .card-military {
+    @apply bg-military-800/30 backdrop-blur-md border border-military-600/50 shadow-military-lg hover:shadow-military-xl transition-all duration-300;
+  }
+  
+  .card-military-dark {
+    @apply bg-gradient-dark-military border border-military-700 text-desert-200 shadow-military-xl backdrop-blur-md;
+  }
+
+  .card-military-translucent {
+    @apply bg-military-800/20 backdrop-blur-md border border-military-600/30 shadow-military-lg;
+  }
+
+  /* Military Status indicators */
+  .status-operational {
+    @apply bg-olive-700 text-desert-100 border-olive-600 font-mono tracking-wider;
+  }
+  
+  .status-critical {
+    @apply bg-red-800 text-desert-100 border-red-700 font-mono tracking-wider;
+  }
+  
+  .status-maintenance {
+    @apply bg-desert-700 text-military-100 border-desert-600 font-mono tracking-wider;
+  }
+  
+  .status-pending {
+    @apply bg-military-600 text-desert-200 border-military-500 font-mono tracking-wider;
+  }
+
+  .status-deployed {
+    @apply bg-tactical-700 text-desert-100 border-tactical-600 font-mono tracking-wider;
+  }
+
+  /* Military animations */
+  .animate-radar {
+    animation: radar 2s linear infinite;
+  }
+  
+  @keyframes radar {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+
+  .animate-tactical-pulse {
+    animation: tactical-pulse 3s ease-in-out infinite;
+  }
+  
+  @keyframes tactical-pulse {
+    0%, 100% { 
+      box-shadow: 0 0 0 0 rgba(212, 175, 55, 0.4);
+      transform: scale(1);
+    }
+    50% { 
+      box-shadow: 0 0 0 20px rgba(212, 175, 55, 0);
+      transform: scale(1.05);
+    }
+  }
+  
+  .animate-float-tactical {
+    animation: float-tactical 4s ease-in-out infinite;
+  }
+  
+  @keyframes float-tactical {
+    0%, 100% { transform: translateY(0px) rotate(0deg); }
+    25% { transform: translateY(-5px) rotate(1deg); }
+    75% { transform: translateY(-5px) rotate(-1deg); }
+  }
+
+  /* Camouflage pattern overlay */
+  .camo-overlay::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: 
+      radial-gradient(circle at 20% 50%, rgba(139, 154, 122, 0.1) 5%, transparent 15%),
+      radial-gradient(circle at 40% 20%, rgba(90, 107, 73, 0.1) 3%, transparent 10%),
+      radial-gradient(circle at 90% 40%, rgba(61, 74, 48, 0.1) 4%, transparent 12%),
+      radial-gradient(circle at 60% 80%, rgba(44, 54, 34, 0.1) 6%, transparent 18%);
+    pointer-events: none;
+    z-index: 1;
+  }
+}
+
+@layer utilities {
+  /* Military themed gradients */
+  .bg-gradient-military-light {
+    background-image: linear-gradient(135deg, #8B9A7A 0%, #6F8162 50%, #56674C 100%);
+  }
+  
+  .bg-gradient-military-medium {
+    background-image: linear-gradient(135deg, #56674C 0%, #44523E 50%, #374233 100%);
+  }
+  
+  .bg-gradient-military-dark {
+    background-image: linear-gradient(135deg, #2A2F26 0%, #1A1E17 50%, #0F0F0A 100%);
+  }
+
+  .bg-gradient-camo-light {
+    background-image: linear-gradient(45deg, #B3BFA5 0%, #8FA080 25%, #6F8162 50%, #56674C 75%, #44523E 100%);
+  }
+  
+  /* Text gradients for military theme */
+  .text-gradient-military {
+    background: linear-gradient(135deg, #D4AF37 0%, #B8860B 50%, #8B6914 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .text-gradient-tactical {
+    background: linear-gradient(135deg, #213621 0%, #56674C 50%, #8B9A7A 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  
+  /* Military hover effects */
+  .hover-lift-military {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  .hover-lift-military:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 20px 25px -5px rgba(42, 47, 38, 0.4), 0 10px 10px -5px rgba(42, 47, 38, 0.3);
+  }
+
+  /* Special military typography */
+  .text-military-heading {
+    @apply font-military font-bold tracking-wider text-desert-200;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  }
+
+  .text-tactical-label {
+    @apply font-tactical font-medium tracking-wide text-military-300 uppercase;
+  }
+
+  .text-military-code {
+    @apply font-mono tracking-widest text-accent-light;
+    font-variant: small-caps;
+  }
+
+  /* Tactical grid background */
+  .tactical-grid {
+    background-image: 
+      linear-gradient(rgba(86, 103, 76, 0.1) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(86, 103, 76, 0.1) 1px, transparent 1px);
+    background-size: 20px 20px;
+  }
+
+  /* Special focus states for military forms */
+  .focus-military {
+    @apply focus:ring-2 focus:ring-accent-light focus:border-accent-light focus:outline-none;
+  }
+
+  /* Military badge styling */
+  .military-badge {
+    @apply inline-flex items-center px-3 py-1 rounded-full text-xs font-mono font-bold tracking-wider border uppercase;
+  }
+
+  /* Tactical spacing */
+  .tactical-spacing {
+    @apply space-y-6;
+  }
+
+  .tactical-spacing-sm {
+    @apply space-y-3;
+  }
+
+  /* Military container styling */
+  .military-container {
+    @apply max-w-7xl mx-auto px-4 py-8;
+  }
+
+  /* Combat ready indicators */
+  .combat-ready {
+    position: relative;
+  }
+
+  .combat-ready::after {
+    content: '';
+    position: absolute;
+    top: -2px;
+    right: -2px;
+    width: 8px;
+    height: 8px;
+    background: #D4AF37;
+    border-radius: 50%;
+    box-shadow: 0 0 0 2px rgba(212, 175, 55, 0.3);
+    animation: tactical-pulse 2s infinite;
+  }
+}
+
+/* Custom scrollbar for military theme */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(42, 47, 38, 0.3);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(86, 103, 76, 0.6);
+  border-radius: 4px;
+  border: 1px solid rgba(68, 82, 62, 0.8);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(86, 103, 76, 0.8);
+}
+
+/* Selection styling */
+::selection {
+  background: rgba(212, 175, 55, 0.3);
+  color: #213621;
 }

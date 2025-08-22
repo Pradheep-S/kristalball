@@ -4,7 +4,6 @@ import { gsap } from 'gsap';
 import { 
   EyeIcon, 
   EyeSlashIcon, 
-  ShieldCheckIcon,
   UserIcon,
   KeyIcon,
   BuildingOfficeIcon,
@@ -214,13 +213,13 @@ function Login({ onLogin }) {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-blue-900 to-indigo-900 flex items-center justify-center p-4">
+    <div className="min-h-screen bg-gradient-dark-military military-pattern flex items-center justify-center p-4">
       <Toaster position="top-right" />
       
       {/* Background Pattern */}
       <div className="absolute inset-0 opacity-10">
         <div className="absolute inset-0" style={{
-          backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.1'%3E%3Ccircle cx='30' cy='30' r='2'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
+          backgroundImage: `url("data:image/svg+xml,%3Csvg width='80' height='80' viewBox='0 0 80 80' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23D4AF37' fill-opacity='0.05'%3E%3Cpath d='M0 0h40v40H0V0zm40 0h40v40H40V0zm0 40h40v40H40V40zM0 40h40v40H0V40z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
         }} />
       </div>
 
@@ -239,50 +238,53 @@ function Login({ onLogin }) {
           transition={{ delay: 0.2 }}
         >
           <motion.div
-            className="w-20 h-20 bg-gradient-to-br from-blue-500 to-indigo-600 rounded-2xl flex items-center justify-center mx-auto mb-4 shadow-2xl"
+            className="w-24 h-24 bg-gradient-tactical rounded-2xl flex items-center justify-center mx-auto mb-4 shadow-military-2xl border border-military-600"
             whileHover={{ scale: 1.05, rotate: 5 }}
             transition={{ type: "spring", stiffness: 300 }}
           >
-            <ShieldCheckIcon className="w-10 h-10 text-white" />
+            <svg className="w-12 h-12 text-desert-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+            </svg>
           </motion.div>
-          <h1 className="text-3xl font-bold text-white mb-2">
-            Military Asset Manager
+          <h1 className="text-3xl font-bold text-desert-200 mb-2 font-military tracking-wider">
+            TACTICAL ASSET COMMAND
           </h1>
-          <p className="text-blue-200">
-            {isSignup ? "Create your account" : "Secure access to military assets"}
+          <p className="text-military-300 font-tactical tracking-wide">
+            {isSignup ? "REGISTER FOR DEPLOYMENT" : "SECURE ACCESS TO MILITARY ASSETS"}
           </p>
+          <div className="w-16 h-0.5 bg-accent-light mx-auto mt-3"></div>
         </motion.div>
 
         {/* Demo Info Box */}
         <motion.div 
-          className="bg-blue-500/20 backdrop-blur-md rounded-xl p-4 mb-6 border border-blue-400/30"
+          className="bg-military-800/40 backdrop-blur-md rounded-xl p-4 mb-6 border border-military-600/50 shadow-military"
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.2 }}
         >
           <div className="flex items-center space-x-2 mb-2">
-            <InformationCircleIcon className="w-5 h-5 text-blue-300" />
-            <span className="text-blue-200 font-medium">Demo Mode</span>
+            <InformationCircleIcon className="w-5 h-5 text-accent-light" />
+            <span className="text-desert-200 font-medium font-military tracking-wide">DEMO MODE - CLASSIFIED</span>
           </div>
-          <p className="text-blue-100 text-sm">
+          <p className="text-military-200 text-sm font-tactical">
             {isSignup 
-              ? "Fill out the form to create a new account with MongoDB Atlas backend!"
-              : "Try these MongoDB Atlas demo accounts:"
+              ? "Complete registration form for tactical deployment access!"
+              : "Use these authorized access codes for demonstration:"
             }
           </p>
           {!isSignup && (
-            <div className="mt-2 grid grid-cols-2 gap-2 text-xs">
-              <div className="bg-blue-600/30 rounded px-2 py-1">
-                <span className="text-blue-200">admin / admin123</span>
+            <div className="mt-3 grid grid-cols-2 gap-2 text-xs">
+              <div className="bg-military-700/50 rounded px-2 py-1 border border-military-600">
+                <span className="text-desert-100 font-mono">admin / admin123</span>
               </div>
-              <div className="bg-blue-600/30 rounded px-2 py-1">
-                <span className="text-blue-200">commander / commander123</span>
+              <div className="bg-military-700/50 rounded px-2 py-1 border border-military-600">
+                <span className="text-desert-100 font-mono">commander / commander123</span>
               </div>
-              <div className="bg-blue-600/30 rounded px-2 py-1">
-                <span className="text-blue-200">logistics / logistics123</span>
+              <div className="bg-military-700/50 rounded px-2 py-1 border border-military-600">
+                <span className="text-desert-100 font-mono">logistics / logistics123</span>
               </div>
-              <div className="bg-blue-600/30 rounded px-2 py-1">
-                <span className="text-blue-200">demo / demo123</span>
+              <div className="bg-military-700/50 rounded px-2 py-1 border border-military-600">
+                <span className="text-desert-100 font-mono">demo / demo123</span>
               </div>
             </div>
           )}
@@ -290,36 +292,36 @@ function Login({ onLogin }) {
 
         {/* Main Form Card */}
         <motion.div 
-          className="bg-white/10 backdrop-blur-md rounded-2xl p-8 shadow-2xl border border-white/20"
+          className="bg-military-800/20 backdrop-blur-md rounded-2xl p-8 shadow-military-2xl border border-military-600/50"
           initial={{ opacity: 0, scale: 0.9 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ delay: 0.3 }}
         >
           {/* Tab Switcher */}
-          <div className="flex mb-8 bg-black/20 rounded-xl p-1">
+          <div className="flex mb-8 bg-military-950/40 rounded-xl p-1 border border-military-700">
             <motion.button
               onClick={() => !isSignup && handleModeSwitch()}
-              className={`flex-1 py-3 px-4 rounded-lg text-sm font-medium transition-all duration-300 ${
+              className={`flex-1 py-3 px-4 rounded-lg text-sm font-medium transition-all duration-300 font-tactical tracking-wide ${
                 !isSignup 
-                  ? 'bg-white text-slate-900 shadow-lg' 
-                  : 'text-white hover:bg-white/10'
+                  ? 'bg-gradient-tactical text-desert-100 shadow-military-lg border border-military-600' 
+                  : 'text-military-300 hover:bg-military-800/30 hover:text-desert-200'
               }`}
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
             >
-              Sign In
+              SIGN IN
             </motion.button>
             <motion.button
               onClick={() => isSignup && handleModeSwitch()}
-              className={`flex-1 py-3 px-4 rounded-lg text-sm font-medium transition-all duration-300 ${
+              className={`flex-1 py-3 px-4 rounded-lg text-sm font-medium transition-all duration-300 font-tactical tracking-wide ${
                 isSignup 
-                  ? 'bg-white text-slate-900 shadow-lg' 
-                  : 'text-white hover:bg-white/10'
+                  ? 'bg-gradient-tactical text-desert-100 shadow-military-lg border border-military-600' 
+                  : 'text-military-300 hover:bg-military-800/30 hover:text-desert-200'
               }`}
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
             >
-              Sign Up
+              REGISTER
             </motion.button>
           </div>
 
@@ -334,19 +336,19 @@ function Login({ onLogin }) {
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.3 }}
               >
-                <label className="block text-sm font-medium text-white mb-2">
-                  Username
+                <label className="block text-sm font-medium text-desert-200 mb-2 font-tactical tracking-wide">
+                  OPERATOR ID
                 </label>
                 <div className="relative">
-                  <UserIcon className="absolute left-3 top-1/2 transform -translate-y-1/2 text-white/50 w-5 h-5" />
+                  <UserIcon className="absolute left-3 top-1/2 transform -translate-y-1/2 text-military-400 w-5 h-5" />
                   <input
                     type="text"
                     name="username"
                     value={formData.username}
                     onChange={handleInputChange}
                     required
-                    className="w-full pl-10 pr-4 py-3 bg-white/10 border border-white/20 rounded-xl text-white placeholder-white/50 focus:bg-white/20 focus:border-blue-400 focus:outline-none transition-all duration-300"
-                    placeholder="Enter your username"
+                    className="w-full pl-10 pr-4 py-3 bg-military-800/30 border border-military-600 rounded-xl text-desert-100 placeholder-military-400 focus:bg-military-700/40 focus:border-accent-light focus:outline-none transition-all duration-300 font-mono"
+                    placeholder="Enter operator identification"
                   />
                 </div>
               </motion.div>
@@ -362,19 +364,19 @@ function Login({ onLogin }) {
                     exit={{ opacity: 0, x: -20 }}
                     transition={{ duration: 0.3, delay: 0.1 }}
                   >
-                    <label className="block text-sm font-medium text-white mb-2">
-                      Email Address
+                    <label className="block text-sm font-medium text-desert-200 mb-2 font-tactical tracking-wide">
+                      SECURE EMAIL
                     </label>
                     <div className="relative">
-                      <EnvelopeIcon className="absolute left-3 top-1/2 transform -translate-y-1/2 text-white/50 w-5 h-5" />
+                      <EnvelopeIcon className="absolute left-3 top-1/2 transform -translate-y-1/2 text-military-400 w-5 h-5" />
                       <input
                         type="email"
                         name="email"
                         value={formData.email}
                         onChange={handleInputChange}
                         required
-                        className="w-full pl-10 pr-4 py-3 bg-white/10 border border-white/20 rounded-xl text-white placeholder-white/50 focus:bg-white/20 focus:border-blue-400 focus:outline-none transition-all duration-300"
-                        placeholder="Enter your email"
+                        className="w-full pl-10 pr-4 py-3 bg-military-800/30 border border-military-600 rounded-xl text-desert-100 placeholder-military-400 focus:bg-military-700/40 focus:border-accent-light focus:outline-none transition-all duration-300 font-mono"
+                        placeholder="Enter secure email address"
                       />
                     </div>
                   </motion.div>
@@ -389,24 +391,24 @@ function Login({ onLogin }) {
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.3, delay: isSignup ? 0.2 : 0.1 }}
               >
-                <label className="block text-sm font-medium text-white mb-2">
-                  Password
+                <label className="block text-sm font-medium text-desert-200 mb-2 font-tactical tracking-wide">
+                  ACCESS CODE
                 </label>
                 <div className="relative">
-                  <KeyIcon className="absolute left-3 top-1/2 transform -translate-y-1/2 text-white/50 w-5 h-5" />
+                  <KeyIcon className="absolute left-3 top-1/2 transform -translate-y-1/2 text-military-400 w-5 h-5" />
                   <input
                     type={showPassword ? "text" : "password"}
                     name="password"
                     value={formData.password}
                     onChange={handleInputChange}
                     required
-                    className="w-full pl-10 pr-12 py-3 bg-white/10 border border-white/20 rounded-xl text-white placeholder-white/50 focus:bg-white/20 focus:border-blue-400 focus:outline-none transition-all duration-300"
-                    placeholder="Enter your password"
+                    className="w-full pl-10 pr-12 py-3 bg-military-800/30 border border-military-600 rounded-xl text-desert-100 placeholder-military-400 focus:bg-military-700/40 focus:border-accent-light focus:outline-none transition-all duration-300 font-mono"
+                    placeholder="Enter secure access code"
                   />
                   <motion.button
                     type="button"
                     onClick={() => setShowPassword(!showPassword)}
-                    className="absolute right-3 top-1/2 transform -translate-y-1/2 text-white/50 hover:text-white transition-colors"
+                    className="absolute right-3 top-1/2 transform -translate-y-1/2 text-military-400 hover:text-desert-200 transition-colors"
                     whileHover={{ scale: 1.1 }}
                     whileTap={{ scale: 0.9 }}
                   >
@@ -561,21 +563,21 @@ function Login({ onLogin }) {
             <motion.button
               type="submit"
               disabled={loading}
-              className="w-full bg-gradient-to-r from-blue-600 to-indigo-600 text-white py-3 px-4 rounded-xl font-medium hover:from-blue-700 hover:to-indigo-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-transparent disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-300 shadow-lg hover:shadow-xl"
+              className="w-full bg-gradient-tactical text-desert-100 py-3 px-4 rounded-xl font-medium hover:shadow-military-lg focus:outline-none focus:ring-2 focus:ring-accent-light focus:ring-offset-2 focus:ring-offset-transparent disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-300 shadow-military hover:shadow-military-xl border border-military-600 font-tactical tracking-wide"
               whileHover={{ scale: loading ? 1 : 1.02, y: loading ? 0 : -2 }}
               whileTap={{ scale: loading ? 1 : 0.98 }}
             >
               {loading ? (
                 <div className="flex items-center justify-center space-x-2">
                   <motion.div
-                    className="w-5 h-5 border-2 border-white border-t-transparent rounded-full"
+                    className="w-5 h-5 border-2 border-desert-200 border-t-transparent rounded-full"
                     animate={{ rotate: 360 }}
                     transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
                   />
-                  <span>Processing...</span>
+                  <span>PROCESSING...</span>
                 </div>
               ) : (
-                isSignup ? "Create Account" : "Sign In"
+                isSignup ? "REGISTER FOR DEPLOYMENT" : "AUTHENTICATE ACCESS"
               )}
             </motion.button>
           </form>
@@ -587,29 +589,34 @@ function Login({ onLogin }) {
             animate={{ opacity: 1 }}
             transition={{ delay: 0.5 }}
           >
-            <p className="text-white/70">
-              {isSignup ? "Already have an account?" : "Don't have an account?"}
+            <p className="text-military-300 font-tactical">
+              {isSignup ? "Already have clearance?" : "Need deployment authorization?"}
             </p>
             <motion.button
               onClick={handleModeSwitch}
-              className="text-blue-300 hover:text-blue-200 font-medium underline transition-colors duration-300"
+              className="text-accent-light hover:text-desert-100 font-medium underline transition-colors duration-300 font-tactical tracking-wide"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
-              {isSignup ? "Sign in here" : "Create one here"}
+              {isSignup ? "ACCESS EXISTING ACCOUNT" : "REQUEST NEW AUTHORIZATION"}
             </motion.button>
           </motion.div>
         </motion.div>
 
         {/* Footer */}
         <motion.div 
-          className="text-center mt-8 text-white/50 text-sm"
+          className="text-center mt-8 text-military-400 text-sm"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.6 }}
         >
-          <p>© 2025 Military Asset Management System</p>
-          <p>Secure • Reliable • Efficient</p>
+          <p className="font-military tracking-wider">© 2025 TACTICAL ASSET COMMAND SYSTEM</p>
+          <p className="font-tactical tracking-widest text-xs mt-1">CLASSIFIED • AUTHORIZED PERSONNEL ONLY • TAC-OPS</p>
+          <div className="flex justify-center space-x-2 mt-2">
+            <div className="w-2 h-2 bg-accent-light rounded-full"></div>
+            <div className="w-2 h-2 bg-military-600 rounded-full"></div>
+            <div className="w-2 h-2 bg-accent-light rounded-full"></div>
+          </div>
         </motion.div>
       </motion.div>
     </div>

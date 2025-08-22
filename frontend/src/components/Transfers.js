@@ -2,7 +2,6 @@ import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { gsap } from 'gsap';
 import { 
-  PlusIcon, 
   MagnifyingGlassIcon, 
   FunnelIcon, 
   ArrowPathIcon,
@@ -16,6 +15,8 @@ import {
   ArrowRightIcon
 } from '@heroicons/react/24/outline';
 import toast, { Toaster } from 'react-hot-toast';
+import { MilitaryLoader } from './common/MilitaryLoaders';
+import { TankIcon, TargetIcon } from './common/MilitaryIcons';
 
 const Transfers = ({ token, user, onNavigate }) => {
   const tableRef = useRef(null);
@@ -60,26 +61,26 @@ const Transfers = ({ token, user, onNavigate }) => {
     }
   }, [transfers]);
 
-  // Mock data for demonstration
+  // Mock tactical bases for military operations
   const mockBases = [
-    { id: 1, name: 'Fort Alpha', location: 'Washington, DC' },
-    { id: 2, name: 'Base Beta', location: 'San Diego, CA' },
-    { id: 3, name: 'Station Gamma', location: 'Norfolk, VA' },
-    { id: 4, name: 'Camp Delta', location: 'Fort Bragg, NC' },
-    { id: 5, name: 'Naval Base Echo', location: 'Pearl Harbor, HI' },
-    { id: 6, name: 'Air Force Base Foxtrot', location: 'Colorado Springs, CO' },
-    { id: 7, name: 'Marine Base Golf', location: 'Camp Pendleton, CA' }
+    { id: 1, name: 'ALPHA COMMAND', location: 'WASHINGTON DC TACTICAL ZONE' },
+    { id: 2, name: 'BRAVO OUTPOST', location: 'SAN DIEGO NAVAL SECTOR' },
+    { id: 3, name: 'CHARLIE STATION', location: 'NORFOLK MARITIME BASE' },
+    { id: 4, name: 'DELTA FORWARD OPERATING BASE', location: 'FORT BRAGG COMBAT ZONE' },
+    { id: 5, name: 'ECHO NAVAL COMMAND', location: 'PEARL HARBOR PACIFIC FLEET' },
+    { id: 6, name: 'FOXTROT AIR COMMAND', location: 'COLORADO SPRINGS AIR DEFENSE' },
+    { id: 7, name: 'GOLF MARINE EXPEDITIONARY', location: 'CAMP PENDLETON AMPHIBIOUS' }
   ];
 
   const mockAssets = [
-    { id: 1, name: 'M4A1 Carbine', serial_number: 'SN123456', base_id: 1 },
-    { id: 2, name: 'Night Vision Goggles AN/PVS-14', serial_number: 'NV345678', base_id: 1 },
-    { id: 3, name: 'Medical Kit Advanced', serial_number: 'MD789012', base_id: 2 },
-    { id: 4, name: 'Drone DJI Matrice 300', serial_number: 'DR456789', base_id: 3 },
-    { id: 5, name: 'Field Radio AN/PRC-152', serial_number: 'RD123789', base_id: 1 },
-    { id: 6, name: 'Humvee M1151', serial_number: 'VH789012', base_id: 2 },
-    { id: 7, name: 'Satellite Communication System', serial_number: 'SC987654', base_id: 3 },
-    { id: 8, name: 'Body Armor Vests', serial_number: 'BA456123', base_id: 1 }
+    { id: 1, name: 'M4A1 TACTICAL CARBINE', serial_number: 'TAC-123456', base_id: 1 },
+    { id: 2, name: 'AN/PVS-14 NIGHT VISION SYSTEM', serial_number: 'NVG-345678', base_id: 1 },
+    { id: 3, name: 'ADVANCED BATTLEFIELD MEDICAL KIT', serial_number: 'MED-789012', base_id: 2 },
+    { id: 4, name: 'TACTICAL SURVEILLANCE DRONE', serial_number: 'UAV-456789', base_id: 3 },
+    { id: 5, name: 'AN/PRC-152 COMBAT RADIO', serial_number: 'RAD-123789', base_id: 1 },
+    { id: 6, name: 'M1151 ARMORED TACTICAL VEHICLE', serial_number: 'VEH-789012', base_id: 2 },
+    { id: 7, name: 'SATELLITE COMMUNICATION ARRAY', serial_number: 'SAT-987654', base_id: 3 },
+    { id: 8, name: 'INTERCEPTOR BODY ARMOR SYSTEM', serial_number: 'ARM-456123', base_id: 1 }
   ];
 
   useEffect(() => {
@@ -90,112 +91,112 @@ const Transfers = ({ token, user, onNavigate }) => {
         // Simulate API delay
         await new Promise(resolve => setTimeout(resolve, 1000));
         
-        // Mock transfers data with enhanced details
+        // Tactical asset deployment operations data
         const mockTransfers = [
           {
             id: 1,
-            asset_name: 'M4A1 Carbine',
-            asset_serial: 'SN123456',
-            from_base: 'Fort Alpha',
-            to_base: 'Base Beta',
-            status: 'In Transit',
+            asset_name: 'M4A1 TACTICAL CARBINE',
+            asset_serial: 'TAC-123456',
+            from_base: 'ALPHA COMMAND',
+            to_base: 'BRAVO OUTPOST',
+            status: 'DEPLOYING',
             requested_date: '2025-01-20',
             approved_date: '2025-01-21',
             estimated_arrival: '2025-01-25',
-            reason: 'Tactical operations requirement',
-            requested_by: 'Colonel Smith',
-            approved_by: 'General Johnson',
-            tracking_number: 'TRK001234',
-            priority: 'High'
+            reason: 'FRONT-LINE COMBAT OPERATIONS',
+            requested_by: 'COLONEL SMITH',
+            approved_by: 'GENERAL JOHNSON',
+            tracking_number: 'DEP-001234',
+            priority: 'CRITICAL'
           },
           {
             id: 2,
-            asset_name: 'Night Vision Goggles',
-            asset_serial: 'NV345678',
-            from_base: 'Station Gamma',
-            to_base: 'Camp Delta',
-            status: 'Pending Approval',
+            asset_name: 'AN/PVS-14 NIGHT VISION SYSTEM',
+            asset_serial: 'NVG-345678',
+            from_base: 'CHARLIE STATION',
+            to_base: 'DELTA FORWARD OPERATING BASE',
+            status: 'AUTHORIZATION PENDING',
             requested_date: '2025-01-19',
             approved_date: null,
             estimated_arrival: null,
-            reason: 'Night mission support',
-            requested_by: 'Major Williams',
+            reason: 'NIGHT RECONNAISSANCE MISSION',
+            requested_by: 'MAJOR WILLIAMS',
             approved_by: null,
             tracking_number: null,
-            priority: 'Medium'
+            priority: 'HIGH'
           },
           {
             id: 3,
-            asset_name: 'Medical Kit Advanced',
-            asset_serial: 'MD789012',
-            from_base: 'Naval Base Echo',
-            to_base: 'Fort Alpha',
-            status: 'Completed',
+            asset_name: 'ADVANCED BATTLEFIELD MEDICAL KIT',
+            asset_serial: 'MED-789012',
+            from_base: 'ECHO NAVAL COMMAND',
+            to_base: 'ALPHA COMMAND',
+            status: 'MISSION COMPLETE',
             requested_date: '2025-01-15',
             approved_date: '2025-01-16',
             estimated_arrival: '2025-01-18',
-            reason: 'Medical emergency response',
-            requested_by: 'Captain Davis',
-            approved_by: 'Admiral Brown',
-            tracking_number: 'TRK001235',
-            priority: 'Critical'
+            reason: 'MEDICAL EMERGENCY RESPONSE',
+            requested_by: 'CAPTAIN DAVIS',
+            approved_by: 'ADMIRAL BROWN',
+            tracking_number: 'DEP-001235',
+            priority: 'CRITICAL'
           },
           {
             id: 4,
-            asset_name: 'Drone Systems',
-            asset_serial: 'DR456789',
-            from_base: 'Air Force Base Foxtrot',
-            to_base: 'Marine Base Golf',
-            status: 'In Transit',
+            asset_name: 'TACTICAL SURVEILLANCE DRONE',
+            asset_serial: 'UAV-456789',
+            from_base: 'FOXTROT AIR COMMAND',
+            to_base: 'GOLF MARINE EXPEDITIONARY',
+            status: 'DEPLOYING',
             requested_date: '2025-01-18',
             approved_date: '2025-01-19',
             estimated_arrival: '2025-01-22',
-            reason: 'Reconnaissance mission',
-            requested_by: 'Lieutenant Colonel Lee',
-            approved_by: 'Brigadier General Clark',
-            tracking_number: 'TRK001236',
-            priority: 'High'
+            reason: 'AERIAL RECONNAISSANCE OPERATION',
+            requested_by: 'LT COLONEL LEE',
+            approved_by: 'BRIGADIER GENERAL CLARK',
+            tracking_number: 'DEP-001236',
+            priority: 'HIGH'
           },
           {
             id: 5,
-            asset_name: 'Field Radio Equipment',
-            asset_serial: 'RD123789',
-            from_base: 'Camp Delta',
-            to_base: 'Station Gamma',
-            status: 'Rejected',
+            asset_name: 'AN/PRC-152 COMBAT RADIO',
+            asset_serial: 'RAD-123789',
+            from_base: 'DELTA FORWARD OPERATING BASE',
+            to_base: 'CHARLIE STATION',
+            status: 'DEPLOYMENT DENIED',
             requested_date: '2025-01-17',
             approved_date: null,
             estimated_arrival: null,
-            reason: 'Communication upgrade',
-            requested_by: 'Sergeant Major Taylor',
+            reason: 'COMMUNICATION INFRASTRUCTURE UPGRADE',
+            requested_by: 'SERGEANT MAJOR TAYLOR',
             approved_by: null,
             tracking_number: null,
-            priority: 'Low',
-            rejection_reason: 'Asset required for current operations'
+            priority: 'MEDIUM',
+            rejection_reason: 'ASSET REQUIRED FOR CURRENT OPERATIONS'
           },
           {
             id: 6,
-            asset_name: 'Armored Vehicle',
-            asset_serial: 'VH789012',
-            from_base: 'Fort Alpha',
-            to_base: 'Base Beta',
-            status: 'Completed',
+            asset_name: 'M1151 ARMORED TACTICAL VEHICLE',
+            asset_serial: 'VEH-789012',
+            from_base: 'ALPHA COMMAND',
+            to_base: 'BRAVO OUTPOST',
+            status: 'MISSION COMPLETE',
             requested_date: '2025-01-10',
             approved_date: '2025-01-12',
             estimated_arrival: '2025-01-15',
-            reason: 'Convoy operations',
-            requested_by: 'Major Anderson',
-            approved_by: 'Colonel Thompson',
-            tracking_number: 'TRK001237',
-            priority: 'Medium'
+            reason: 'CONVOY ESCORT OPERATIONS',
+            requested_by: 'MAJOR ANDERSON',
+            approved_by: 'COLONEL THOMPSON',
+            tracking_number: 'DEP-001237',
+            priority: 'HIGH'
           }
         ];
 
         setTransfers(mockTransfers);
-        toast.success('Transfer data loaded successfully!');
+        toast.success('ASSET DEPLOYMENT DATA LOADED SUCCESSFULLY!');
       } catch (err) {
-        setError('Failed to load transfer data');
-        toast.error('Failed to load transfer data');
+        setError('FAILED TO LOAD DEPLOYMENT DATA');
+        toast.error('FAILED TO LOAD DEPLOYMENT DATA');
         console.error('Transfer error:', err);
       } finally {
         setLoading(false);
@@ -312,32 +313,12 @@ const Transfers = ({ token, user, onNavigate }) => {
   if (loading) {
     return (
       <motion.div 
-        className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-50 flex items-center justify-center"
+        className="min-h-screen bg-military-950 flex items-center justify-center"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
       >
         <div className="text-center space-y-4">
-          <motion.div
-            className="w-16 h-16 border-4 border-blue-500 border-t-transparent rounded-full mx-auto"
-            animate={{ rotate: 360 }}
-            transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
-          />
-          <motion.h2 
-            className="text-2xl font-bold text-slate-800"
-            initial={{ y: 10, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            transition={{ delay: 0.2 }}
-          >
-            Loading Transfers...
-          </motion.h2>
-          <motion.p 
-            className="text-slate-600"
-            initial={{ y: 10, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            transition={{ delay: 0.4 }}
-          >
-            Fetching asset movement records
-          </motion.p>
+          <MilitaryLoader text="LOADING ASSET DEPLOYMENT DATA..." />
         </div>
       </motion.div>
     );
@@ -356,16 +337,16 @@ const Transfers = ({ token, user, onNavigate }) => {
           animate={{ scale: 1, opacity: 1 }}
           transition={{ duration: 0.5 }}
         >
-          <ExclamationTriangleIcon className="w-16 h-16 text-red-500 mx-auto" />
-          <h2 className="text-2xl font-bold text-slate-800">Error Loading Transfers</h2>
-          <p className="text-slate-600">{error}</p>
+          <ExclamationTriangleIcon className="w-16 h-16 text-red-400 mx-auto" />
+          <h2 className="text-2xl font-bold text-military-100 font-orbitron">DEPLOYMENT SYSTEM ERROR</h2>
+          <p className="text-military-400 font-rajdhani">{error}</p>
           <motion.button
-            className="bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition-colors"
+            className="bg-gradient-to-r from-red-600 to-red-700 hover:from-red-500 hover:to-red-600 text-military-50 px-6 py-3 rounded-lg transition-colors font-rajdhani font-semibold"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
             onClick={() => window.location.reload()}
           >
-            Retry
+            RETRY SYSTEM ACCESS
           </motion.button>
         </motion.div>
       </motion.div>
@@ -374,50 +355,55 @@ const Transfers = ({ token, user, onNavigate }) => {
 
   return (
     <motion.div 
-      className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-50 p-6"
+      className="min-h-screen bg-military-950 text-military-50"
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.6 }}
     >
       <Toaster position="top-right" />
-      <div className="max-w-7xl mx-auto space-y-6">
-        {/* Header */}
+      <div className="max-w-7xl mx-auto p-6 space-y-6">
+        {/* Tactical Header */}
         <motion.div 
-          className="bg-white shadow-xl rounded-2xl p-6 border border-blue-200"
+          className="bg-gradient-to-r from-tactical-900/30 to-military-900/30 rounded-lg border border-tactical-600/30 backdrop-blur-sm p-6"
           initial={{ y: -20, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           transition={{ duration: 0.5, delay: 0.1 }}
         >
           <div className="flex items-center justify-between">
-            <div>
-              <motion.h1 
-                className="text-3xl font-bold bg-gradient-to-r from-blue-900 to-indigo-700 bg-clip-text text-transparent"
-                initial={{ x: -20, opacity: 0 }}
-                animate={{ x: 0, opacity: 1 }}
-                transition={{ delay: 0.2 }}
-              >
-                Asset Transfers
-              </motion.h1>
-              <motion.p 
-                className="text-slate-600 mt-1"
-                initial={{ x: -20, opacity: 0 }}
-                animate={{ x: 0, opacity: 1 }}
-                transition={{ delay: 0.3 }}
-              >
-                Manage inter-base asset movements and logistics
-              </motion.p>
+            <div className="flex items-center gap-4">
+              <div className="p-3 bg-tactical-600/20 rounded-lg">
+                <TankIcon className="w-8 h-8 text-tactical-400" />
+              </div>
+              <div>
+                <motion.h1 
+                  className="text-3xl font-bold text-tactical-300 font-orbitron tracking-wider"
+                  initial={{ x: -20, opacity: 0 }}
+                  animate={{ x: 0, opacity: 1 }}
+                  transition={{ delay: 0.2 }}
+                >
+                  ASSET DEPLOYMENT
+                </motion.h1>
+                <motion.p 
+                  className="text-military-400 mt-1 font-rajdhani"
+                  initial={{ x: -20, opacity: 0 }}
+                  animate={{ x: 0, opacity: 1 }}
+                  transition={{ delay: 0.3 }}
+                >
+                  TACTICAL ASSET MOVEMENT & LOGISTICS OPERATIONS
+                </motion.p>
+              </div>
             </div>
             <motion.button
               onClick={() => setShowForm(true)}
-              className="bg-gradient-to-r from-blue-600 to-indigo-600 text-white px-6 py-3 rounded-xl hover:from-blue-700 hover:to-indigo-700 transition-all duration-300 flex items-center space-x-2 shadow-lg hover:shadow-xl"
+              className="bg-gradient-to-r from-tactical-600 to-tactical-700 hover:from-tactical-500 hover:to-tactical-600 text-military-50 px-6 py-3 rounded-lg transition-all duration-300 flex items-center space-x-2 border border-tactical-500/20 font-rajdhani font-semibold"
               whileHover={{ scale: 1.05, y: -2 }}
               whileTap={{ scale: 0.95 }}
               initial={{ x: 20, opacity: 0 }}
               animate={{ x: 0, opacity: 1 }}
               transition={{ delay: 0.4 }}
             >
-              <PlusIcon className="w-5 h-5" />
-              <span>Request Transfer</span>
+              <TargetIcon className="w-5 h-5" />
+              <span>REQUEST DEPLOYMENT</span>
             </motion.button>
           </div>
         </motion.div>

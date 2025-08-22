@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import toast, { Toaster } from 'react-hot-toast';
+import { MilitaryLoader } from './common/MilitaryLoaders';
+import { WeaponIcon, SupplyIcon, TargetIcon } from './common/MilitaryIcons';
 
 const AssignmentsExpenditures = ({ token, user, onNavigate }) => {
   console.log('AssignmentsExpenditures user data:', user);
@@ -52,95 +54,95 @@ const AssignmentsExpenditures = ({ token, user, onNavigate }) => {
         // Simulate API delay
         await new Promise(resolve => setTimeout(resolve, 800));
         
-        // Mock assignments data
+        // Tactical unit assignments data
         const mockAssignments = [
           {
             id: 1,
-            asset_name: 'M4A1 Carbine',
-            asset_serial: 'SN123456',
-            personnel_name: 'Sergeant Johnson',
+            asset_name: 'M4A1 TACTICAL CARBINE',
+            asset_serial: 'TAC-123456',
+            personnel_name: 'SERGEANT JOHNSON',
             personnel_rank: 'E-5',
             assignment_date: '2025-08-18',
             return_date: '2025-09-15',
-            purpose: 'Training Exercise Alpha',
-            status: 'active',
-            notes: 'Standard issue for combat training',
-            assigned_by: 'Alpha Logistics',
-            base_name: 'Fort Alpha'
+            purpose: 'COMBAT TRAINING OPERATION ALPHA',
+            status: 'ACTIVE DUTY',
+            notes: 'STANDARD ISSUE FOR FRONT-LINE COMBAT TRAINING',
+            assigned_by: 'ALPHA COMMAND LOGISTICS',
+            base_name: 'ALPHA COMMAND'
           },
           {
             id: 2,
-            asset_name: 'Night Vision Goggles AN/PVS-14',
-            asset_serial: 'NV345678',
-            personnel_name: 'Corporal Martinez',
+            asset_name: 'AN/PVS-14 NIGHT VISION SYSTEM',
+            asset_serial: 'NVG-345678',
+            personnel_name: 'CORPORAL MARTINEZ',
             personnel_rank: 'E-4',
             assignment_date: '2025-08-19',
             return_date: '2025-08-25',
-            purpose: 'Night Operations Mission',
-            status: 'active',
-            notes: 'Special operations deployment',
-            assigned_by: 'Alpha Commander',
-            base_name: 'Fort Alpha'
+            purpose: 'NIGHT RECONNAISSANCE MISSION',
+            status: 'ACTIVE DUTY',
+            notes: 'SPECIAL OPERATIONS NIGHT DEPLOYMENT',
+            assigned_by: 'ALPHA COMMAND OPERATIONS',
+            base_name: 'ALPHA COMMAND'
           },
           {
             id: 3,
-            asset_name: 'Field Radio AN/PRC-152',
-            asset_serial: 'RD123789',
-            personnel_name: 'Staff Sergeant Wilson',
+            asset_name: 'AN/PRC-152 COMBAT RADIO',
+            asset_serial: 'RAD-123789',
+            personnel_name: 'STAFF SERGEANT WILSON',
             personnel_rank: 'E-6',
             assignment_date: '2025-08-15',
             return_date: '2025-08-22',
-            purpose: 'Communications Training',
-            status: 'returned',
-            notes: 'Successfully completed training program',
-            assigned_by: 'Alpha Communications',
-            base_name: 'Fort Alpha'
+            purpose: 'TACTICAL COMMUNICATIONS TRAINING',
+            status: 'MISSION COMPLETE',
+            notes: 'SUCCESSFULLY COMPLETED COMMUNICATIONS PROTOCOL TRAINING',
+            assigned_by: 'ALPHA COMMUNICATIONS DIVISION',
+            base_name: 'ALPHA COMMAND'
           },
           {
             id: 4,
-            asset_name: 'Body Armor Vests',
-            asset_serial: 'BA456123',
-            personnel_name: 'Private Thompson',
+            asset_name: 'INTERCEPTOR BODY ARMOR SYSTEM',
+            asset_serial: 'ARM-456123',
+            personnel_name: 'PRIVATE THOMPSON',
             personnel_rank: 'E-2',
             assignment_date: '2025-08-20',
             return_date: '2025-09-20',
-            purpose: 'Basic Combat Training',
-            status: 'active',
-            notes: 'New recruit equipment assignment',
-            assigned_by: 'Beta Quartermaster',
-            base_name: 'Base Beta'
+            purpose: 'BASIC COMBAT TRAINING OPERATIONS',
+            status: 'ACTIVE DUTY',
+            notes: 'NEW RECRUIT EQUIPMENT ASSIGNMENT',
+            assigned_by: 'BRAVO OUTPOST QUARTERMASTER',
+            base_name: 'BRAVO OUTPOST'
           },
           {
             id: 5,
-            asset_name: 'Drone DJI Matrice 300',
-            asset_serial: 'DR456789',
-            personnel_name: 'Lieutenant Garcia',
+            asset_name: 'TACTICAL SURVEILLANCE DRONE',
+            asset_serial: 'UAV-456789',
+            personnel_name: 'LIEUTENANT GARCIA',
             personnel_rank: 'O-2',
             assignment_date: '2025-08-17',
             return_date: '2025-08-30',
-            purpose: 'Reconnaissance Mission',
-            status: 'active',
-            notes: 'Aerial surveillance operations',
-            assigned_by: 'Gamma Tech',
-            base_name: 'Station Gamma'
+            purpose: 'AERIAL RECONNAISSANCE MISSION',
+            status: 'ACTIVE DUTY',
+            notes: 'ADVANCED SURVEILLANCE OPERATIONS',
+            assigned_by: 'CHARLIE STATION TECH DIVISION',
+            base_name: 'CHARLIE STATION'
           },
           {
             id: 6,
-            asset_name: 'Biometric Scanner Systems',
-            asset_serial: 'BS321654',
-            personnel_name: 'Sergeant Davis',
+            asset_name: 'BIOMETRIC SECURITY SCANNER',
+            asset_serial: 'BIO-321654',
+            personnel_name: 'SERGEANT DAVIS',
             personnel_rank: 'E-5',
             assignment_date: '2025-08-16',
             return_date: '2025-08-23',
-            purpose: 'Security Checkpoint Operations',
-            status: 'returned',
-            notes: 'Security enhancement project completed',
-            assigned_by: 'Delta Security',
-            base_name: 'Camp Delta'
+            purpose: 'SECURITY CHECKPOINT OPERATIONS',
+            status: 'MISSION COMPLETE',
+            notes: 'SECURITY ENHANCEMENT PROJECT COMPLETED',
+            assigned_by: 'DELTA FORWARD OPERATING BASE SECURITY',
+            base_name: 'DELTA FORWARD OPERATING BASE'
           }
         ];
 
-        // Mock expenditures data
+        // Tactical expenditure operations data
         const mockExpenditures = [
           {
             id: 1,
@@ -150,10 +152,10 @@ const AssignmentsExpenditures = ({ token, user, onNavigate }) => {
             cost_per_unit: 0.75,
             total_cost: 375.00,
             expenditure_date: '2025-08-20',
-            purpose: 'Live Fire Training Exercise',
-            notes: 'Marksmanship qualification training',
-            expended_by: 'Alpha Training',
-            base_name: 'Fort Alpha'
+            purpose: 'LIVE FIRE TRAINING EXERCISE',
+            notes: 'MARKSMANSHIP QUALIFICATION TRAINING',
+            expended_by: 'ALPHA TRAINING COMMAND',
+            base_name: 'ALPHA COMMAND'
           },
           {
             id: 2,
@@ -163,10 +165,10 @@ const AssignmentsExpenditures = ({ token, user, onNavigate }) => {
             cost_per_unit: 15.00,
             total_cost: 375.00,
             expenditure_date: '2025-08-19',
-            purpose: 'First Aid Training',
-            notes: 'Combat lifesaver course supplies',
-            expended_by: 'Alpha Medical',
-            base_name: 'Fort Alpha'
+            purpose: 'FIRST AID TRAINING',
+            notes: 'COMBAT LIFESAVER COURSE SUPPLIES',
+            expended_by: 'ALPHA MEDICAL CORPS',
+            base_name: 'ALPHA COMMAND'
           },
           {
             id: 3,
@@ -176,10 +178,10 @@ const AssignmentsExpenditures = ({ token, user, onNavigate }) => {
             cost_per_unit: 3.25,
             total_cost: 650.00,
             expenditure_date: '2025-08-18',
-            purpose: 'Vehicle Operations',
-            notes: 'Monthly fuel consumption for fleet',
-            expended_by: 'Beta Motor Pool',
-            base_name: 'Base Beta'
+            purpose: 'VEHICLE OPERATIONS',
+            notes: 'MONTHLY FUEL CONSUMPTION FOR FLEET',
+            expended_by: 'BETA MOTOR POOL',
+            base_name: 'BETA COMMAND'
           },
           {
             id: 4,
@@ -189,10 +191,10 @@ const AssignmentsExpenditures = ({ token, user, onNavigate }) => {
             cost_per_unit: 8.50,
             total_cost: 1275.00,
             expenditure_date: '2025-08-17',
-            purpose: 'Field Operations',
-            notes: 'Radio equipment power supply',
-            expended_by: 'Gamma Communications',
-            base_name: 'Station Gamma'
+            purpose: 'FIELD OPERATIONS',
+            notes: 'RADIO EQUIPMENT POWER SUPPLY',
+            expended_by: 'GAMMA COMMUNICATIONS',
+            base_name: 'GAMMA COMMAND'
           },
           {
             id: 5,
@@ -202,10 +204,10 @@ const AssignmentsExpenditures = ({ token, user, onNavigate }) => {
             cost_per_unit: 0.45,
             total_cost: 450.00,
             expenditure_date: '2025-08-16',
-            purpose: 'Combat Training Exercise',
-            notes: 'Simulated combat scenarios',
-            expended_by: 'Delta Training',
-            base_name: 'Camp Delta'
+            purpose: 'COMBAT TRAINING EXERCISE',
+            notes: 'SIMULATED COMBAT SCENARIOS',
+            expended_by: 'DELTA TRAINING COMMAND',
+            base_name: 'DELTA COMMAND'
           },
           {
             id: 6,
@@ -215,10 +217,10 @@ const AssignmentsExpenditures = ({ token, user, onNavigate }) => {
             cost_per_unit: 12.00,
             total_cost: 360.00,
             expenditure_date: '2025-08-15',
-            purpose: 'Naval Operations',
-            notes: 'Search and rescue training',
-            expended_by: 'Echo Naval Ops',
-            base_name: 'Naval Base Echo'
+            purpose: 'NAVAL OPERATIONS',
+            notes: 'SEARCH AND RESCUE TRAINING',
+            expended_by: 'ECHO NAVAL OPERATIONS',
+            base_name: 'ECHO NAVAL COMMAND'
           },
           {
             id: 7,
@@ -228,10 +230,10 @@ const AssignmentsExpenditures = ({ token, user, onNavigate }) => {
             cost_per_unit: 9.50,
             total_cost: 1900.00,
             expenditure_date: '2025-08-14',
-            purpose: 'Field Training Exercise',
-            notes: 'Extended field operations rations',
-            expended_by: 'Alpha Logistics',
-            base_name: 'Fort Alpha'
+            purpose: 'FIELD TRAINING EXERCISE',
+            notes: 'EXTENDED FIELD OPERATIONS RATIONS',
+            expended_by: 'ALPHA LOGISTICS COMMAND',
+            base_name: 'ALPHA COMMAND'
           },
           {
             id: 8,
@@ -241,10 +243,10 @@ const AssignmentsExpenditures = ({ token, user, onNavigate }) => {
             cost_per_unit: 25.00,
             total_cost: 1125.00,
             expenditure_date: '2025-08-13',
-            purpose: 'Vehicle Maintenance',
-            notes: 'Routine maintenance and repairs',
-            expended_by: 'Beta Maintenance',
-            base_name: 'Base Beta'
+            purpose: 'VEHICLE MAINTENANCE',
+            notes: 'ROUTINE MAINTENANCE AND REPAIRS',
+            expended_by: 'BETA MAINTENANCE COMMAND',
+            base_name: 'BETA COMMAND'
           }
         ];
 
@@ -634,31 +636,40 @@ const AssignmentsExpenditures = ({ token, user, onNavigate }) => {
 
   const getStatusColor = (status) => {
     const colors = {
-      'assigned': 'bg-blue-100 text-blue-800',
-      'returned': 'bg-green-100 text-green-800',
-      'overdue': 'bg-red-100 text-red-800'
+      'assigned': 'bg-tactical-600 text-military-100 border border-tactical-400',
+      'Active': 'bg-tactical-600 text-military-100 border border-tactical-400',
+      'returned': 'bg-green-600 text-military-100 border border-green-400',
+      'Mission Complete': 'bg-green-600 text-military-100 border border-green-400',
+      'overdue': 'bg-red-600 text-military-100 border border-red-400'
     };
-    return colors[status] || 'bg-gray-100 text-gray-800';
+    return colors[status] || 'bg-gray-600 text-military-100 border border-gray-400';
   };
 
   const canManageAssignments = user?.role === 'admin' || user?.role === 'base_commander' || user?.role === 'logistics_officer';
 
   if (loading && assignments.length === 0 && expenditures.length === 0) {
     return (
-      <div className="flex justify-center items-center py-12">
-        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600"></div>
+      <div className="flex justify-center items-center py-12 bg-tactical-900 min-h-screen">
+        <MilitaryLoader />
       </div>
     );
   }
 
   return (
-    <div className="space-y-6">
-      {/* Header */}
-      <div className="bg-white shadow rounded-lg p-6">
+    <div className="space-y-6 bg-tactical-900 min-h-screen p-6">
+      {/* Military Header */}
+      <div className="bg-gradient-to-r from-military-950 to-tactical-800 shadow-2xl rounded-lg p-6 border border-tactical-600">
         <div className="flex justify-between items-center">
-          <div>
-            <h1 className="text-2xl font-bold text-gray-900">Assignments & Expenditures</h1>
-            <p className="text-gray-600">Manage personnel assignments and asset expenditures</p>
+          <div className="flex items-center space-x-4">
+            <TargetIcon className="h-12 w-12 text-military-400" />
+            <div>
+              <h1 className="text-3xl font-bold text-military-100 font-orbitron tracking-wide">
+                UNIT ASSIGNMENTS & TACTICAL EXPENDITURES
+              </h1>
+              <p className="text-military-400 font-rajdhani text-lg">
+                MANAGE PERSONNEL ASSIGNMENTS AND ASSET EXPENDITURES
+              </p>
+            </div>
           </div>
           <div className="flex space-x-3">
             {canManageAssignments && (
@@ -677,21 +688,17 @@ const AssignmentsExpenditures = ({ token, user, onNavigate }) => {
                     });
                     setShowAssignmentForm(true);
                   }}
-                  className="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
+                  className="inline-flex items-center px-6 py-3 border border-military-400 text-sm font-bold rounded-md text-military-100 bg-gradient-to-r from-tactical-700 to-tactical-600 hover:from-tactical-600 hover:to-tactical-500 focus:outline-none focus:ring-2 focus:ring-military-400 transform hover:scale-105 transition-all duration-200 font-rajdhani tracking-wide shadow-lg"
                 >
-                  <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" />
-                  </svg>
-                  {editingAssignment ? 'Edit Assignment' : 'New Assignment'}
+                  <WeaponIcon className="w-5 h-5 mr-2" />
+                  {editingAssignment ? 'MODIFY ASSIGNMENT' : 'NEW ASSIGNMENT'}
                 </button>
                 <button
                   onClick={() => setShowExpenditureForm(true)}
-                  className="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500"
+                  className="inline-flex items-center px-6 py-3 border border-military-400 text-sm font-bold rounded-md text-military-100 bg-gradient-to-r from-green-700 to-green-600 hover:from-green-600 hover:to-green-500 focus:outline-none focus:ring-2 focus:ring-green-400 transform hover:scale-105 transition-all duration-200 font-rajdhani tracking-wide shadow-lg"
                 >
-                  <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" />
-                  </svg>
-                  Record Expenditure
+                  <SupplyIcon className="w-5 h-5 mr-2" />
+                  RECORD EXPENDITURE
                 </button>
               </>
             )}
@@ -699,85 +706,85 @@ const AssignmentsExpenditures = ({ token, user, onNavigate }) => {
         </div>
       </div>
 
-      {/* Tab Navigation */}
-      <div className="bg-white shadow rounded-lg">
-        <div className="border-b border-gray-200">
+      {/* Military Tab Navigation */}
+      <div className="bg-gradient-to-r from-military-950 to-tactical-800 shadow-2xl rounded-lg border border-tactical-600">
+        <div className="border-b border-tactical-600">
           <nav className="-mb-px flex space-x-8 px-6">
             <button
               onClick={() => setActiveTab('assignments')}
-              className={`py-4 px-1 border-b-2 font-medium text-sm ${
+              className={`py-4 px-1 border-b-2 font-bold text-sm font-rajdhani tracking-wide ${
                 activeTab === 'assignments'
-                  ? 'border-blue-500 text-blue-600'
-                  : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'
+                  ? 'border-military-400 text-military-100'
+                  : 'border-transparent text-military-400 hover:text-military-100 hover:border-military-500'
               }`}
             >
-              Personnel Assignments
+              PERSONNEL ASSIGNMENTS
             </button>
             <button
               onClick={() => setActiveTab('expenditures')}
-              className={`py-4 px-1 border-b-2 font-medium text-sm ${
+              className={`py-4 px-1 border-b-2 font-bold text-sm font-rajdhani tracking-wide ${
                 activeTab === 'expenditures'
-                  ? 'border-blue-500 text-blue-600'
-                  : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'
+                  ? 'border-military-400 text-military-100'
+                  : 'border-transparent text-military-400 hover:text-military-100 hover:border-military-500'
               }`}
             >
-              Asset Expenditures
+              ASSET EXPENDITURES
             </button>
           </nav>
         </div>
 
-        {/* Filters */}
-        <div className="p-6 border-b border-gray-200">
-          <h2 className="text-lg font-semibold text-gray-900 mb-4">Filters</h2>
+        {/* Military Filters */}
+        <div className="p-6 border-b border-tactical-600 bg-gradient-to-r from-military-950 to-tactical-800">
+          <h2 className="text-lg font-bold text-military-100 mb-4 font-orbitron tracking-wide">TACTICAL FILTERS</h2>
           <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">Equipment Type</label>
+              <label className="block text-sm font-bold text-military-300 mb-1 font-rajdhani">EQUIPMENT TYPE</label>
               <select
                 value={filters.category}
                 onChange={(e) => handleFilterChange('category', e.target.value)}
-                className="block w-full border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
+                className="block w-full border-tactical-600 bg-tactical-700 text-military-100 rounded-md shadow-sm focus:ring-military-400 focus:border-military-400 sm:text-sm font-rajdhani"
               >
-                <option value="">All Types</option>
-                <option value="Weapons">Weapons</option>
-                <option value="Vehicles">Vehicles</option>
-                <option value="Ammunition">Ammunition</option>
-                <option value="Communication">Communication</option>
-                <option value="Medical">Medical</option>
+                <option value="">ALL TYPES</option>
+                <option value="Weapons">WEAPONS</option>
+                <option value="Vehicles">VEHICLES</option>
+                <option value="Ammunition">AMMUNITION</option>
+                <option value="Communication">COMMUNICATION</option>
+                <option value="Medical">MEDICAL</option>
               </select>
             </div>
 
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">Start Date</label>
+              <label className="block text-sm font-bold text-military-300 mb-1 font-rajdhani">START DATE</label>
               <input
                 type="date"
                 value={filters.start_date}
                 onChange={(e) => handleFilterChange('start_date', e.target.value)}
-                className="block w-full border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
+                className="block w-full border-tactical-600 bg-tactical-700 text-military-100 rounded-md shadow-sm focus:ring-military-400 focus:border-military-400 sm:text-sm font-rajdhani"
               />
             </div>
 
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">End Date</label>
+              <label className="block text-sm font-bold text-military-300 mb-1 font-rajdhani">END DATE</label>
               <input
                 type="date"
                 value={filters.end_date}
                 onChange={(e) => handleFilterChange('end_date', e.target.value)}
-                className="block w-full border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
+                className="block w-full border-tactical-600 bg-tactical-700 text-military-100 rounded-md shadow-sm focus:ring-military-400 focus:border-military-400 sm:text-sm font-rajdhani"
               />
             </div>
 
             {activeTab === 'assignments' && (
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">Status</label>
+                <label className="block text-sm font-bold text-military-300 mb-1 font-rajdhani">STATUS</label>
                 <select
                   value={filters.status}
                   onChange={(e) => handleFilterChange('status', e.target.value)}
-                  className="block w-full border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
+                  className="block w-full border-tactical-600 bg-tactical-700 text-military-100 rounded-md shadow-sm focus:ring-military-400 focus:border-military-400 sm:text-sm font-rajdhani"
                 >
-                  <option value="">All Statuses</option>
-                  <option value="assigned">Assigned</option>
-                  <option value="returned">Returned</option>
-                  <option value="overdue">Overdue</option>
+                  <option value="">ALL STATUSES</option>
+                  <option value="assigned">ACTIVE DUTY</option>
+                  <option value="returned">MISSION COMPLETE</option>
+                  <option value="overdue">OVERDUE</option>
                 </select>
               </div>
             )}
@@ -1062,59 +1069,57 @@ const AssignmentsExpenditures = ({ token, user, onNavigate }) => {
 
       {/* Content based on active tab */}
       <div className="bg-white shadow rounded-lg overflow-hidden">
-        <div className="px-4 py-5 sm:p-6">
+        <div className="px-4 py-5 sm:p-6 bg-gradient-to-r from-military-950 to-tactical-800">
           {activeTab === 'assignments' ? (
             <>
-              <h3 className="text-lg leading-6 font-medium text-gray-900 mb-4">Personnel Assignments</h3>
+              <h3 className="text-lg leading-6 font-bold text-military-100 mb-4 font-orbitron tracking-wide">PERSONNEL ASSIGNMENTS</h3>
               
               {assignments.length === 0 ? (
                 <div className="text-center py-8">
-                  <svg className="mx-auto h-12 w-12 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
-                  </svg>
-                  <h3 className="mt-2 text-sm font-medium text-gray-900">No assignments found</h3>
-                  <p className="mt-1 text-sm text-gray-500">Get started by creating your first assignment.</p>
+                  <WeaponIcon className="mx-auto h-12 w-12 text-military-400" />
+                  <h3 className="mt-2 text-sm font-bold text-military-100 font-rajdhani">NO ASSIGNMENTS FOUND</h3>
+                  <p className="mt-1 text-sm text-military-400 font-rajdhani">Get started by creating your first tactical assignment.</p>
                 </div>
               ) : (
                 <div className="overflow-x-auto">
-                  <table className="min-w-full divide-y divide-gray-200">
-                    <thead className="bg-gray-50">
+                  <table className="min-w-full divide-y divide-tactical-600">
+                    <thead className="bg-tactical-700">
                       <tr>
-                        <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Asset</th>
-                        <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Personnel</th>
-                        <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Assignment Date</th>
-                        <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Return Date</th>
-                        <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Purpose</th>
-                        <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
-                        <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
+                        <th className="px-6 py-3 text-left text-xs font-bold text-military-300 uppercase tracking-wider font-rajdhani">ASSET</th>
+                        <th className="px-6 py-3 text-left text-xs font-bold text-military-300 uppercase tracking-wider font-rajdhani">PERSONNEL</th>
+                        <th className="px-6 py-3 text-left text-xs font-bold text-military-300 uppercase tracking-wider font-rajdhani">ASSIGNMENT DATE</th>
+                        <th className="px-6 py-3 text-left text-xs font-bold text-military-300 uppercase tracking-wider font-rajdhani">RETURN DATE</th>
+                        <th className="px-6 py-3 text-left text-xs font-bold text-military-300 uppercase tracking-wider font-rajdhani">PURPOSE</th>
+                        <th className="px-6 py-3 text-left text-xs font-bold text-military-300 uppercase tracking-wider font-rajdhani">STATUS</th>
+                        <th className="px-6 py-3 text-left text-xs font-bold text-military-300 uppercase tracking-wider font-rajdhani">ACTIONS</th>
                       </tr>
                     </thead>
-                    <tbody className="bg-white divide-y divide-gray-200">
+                    <tbody className="bg-tactical-800 divide-y divide-tactical-600">
                       {assignments.map((assignment) => (
-                        <tr key={assignment.id} className="hover:bg-gray-50">
+                        <tr key={assignment.id} className="hover:bg-tactical-700 transition-colors duration-200">
                           <td className="px-6 py-4 whitespace-nowrap">
                             <div>
-                              <div className="text-sm font-medium text-gray-900">{assignment.asset_name}</div>
-                              <div className="text-sm text-gray-500">{assignment.asset_category}</div>
+                              <div className="text-sm font-bold text-military-100 font-rajdhani">{assignment.asset_name}</div>
+                              <div className="text-sm text-military-300 font-rajdhani">{assignment.asset_category}</div>
                             </div>
                           </td>
                           <td className="px-6 py-4 whitespace-nowrap">
                             <div>
-                              <div className="text-sm font-medium text-gray-900">{assignment.personnel_name}</div>
-                              <div className="text-sm text-gray-500">{assignment.personnel_rank}</div>
+                              <div className="text-sm font-bold text-military-100 font-rajdhani">{assignment.personnel_name}</div>
+                              <div className="text-sm text-military-300 font-rajdhani">{assignment.personnel_rank}</div>
                             </div>
                           </td>
-                          <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+                          <td className="px-6 py-4 whitespace-nowrap text-sm text-military-100 font-rajdhani">
                             {formatDate(assignment.assignment_date)}
                           </td>
-                          <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+                          <td className="px-6 py-4 whitespace-nowrap text-sm text-military-100 font-rajdhani">
                             {assignment.expected_return_date ? formatDate(assignment.expected_return_date) : 'Not specified'}
                           </td>
-                          <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+                          <td className="px-6 py-4 whitespace-nowrap text-sm text-military-100 font-rajdhani">
                             {assignment.purpose}
                           </td>
                           <td className="px-6 py-4 whitespace-nowrap">
-                            <span className={`inline-flex px-2 py-1 text-xs font-medium rounded-full ${getStatusColor(assignment.status)}`}>
+                            <span className={`inline-flex px-2 py-1 text-xs font-bold rounded-full ${getStatusColor(assignment.status)} font-rajdhani`}>
                               {assignment.status.charAt(0).toUpperCase() + assignment.status.slice(1)}
                             </span>
                           </td>
@@ -1123,20 +1128,20 @@ const AssignmentsExpenditures = ({ token, user, onNavigate }) => {
                               {/* View Details Button */}
                               <button
                                 onClick={() => handleViewAssignment(assignment)}
-                                className="text-blue-600 hover:text-blue-900 font-medium px-2 py-1 rounded border border-blue-200 hover:bg-blue-50"
+                                className="text-military-300 hover:text-military-100 font-bold px-2 py-1 rounded border border-tactical-600 hover:bg-tactical-600 font-rajdhani transition-all duration-200"
                                 title="View Details"
                               >
-                                View
+                                VIEW
                               </button>
                               
                               {/* Edit Button - only for active assignments */}
                               {assignment.status === 'Active' && canManageAssignments && (
                                 <button
                                   onClick={() => handleEditAssignment(assignment)}
-                                  className="text-indigo-600 hover:text-indigo-900 font-medium px-2 py-1 rounded border border-indigo-200 hover:bg-indigo-50"
+                                  className="text-military-400 hover:text-military-100 font-bold px-2 py-1 rounded border border-military-500 hover:bg-military-600 font-rajdhani transition-all duration-200"
                                   title="Edit Assignment"
                                 >
-                                  Edit
+                                  EDIT
                                 </button>
                               )}
                               
@@ -1144,10 +1149,10 @@ const AssignmentsExpenditures = ({ token, user, onNavigate }) => {
                               {assignment.status === 'Active' && canManageAssignments && (
                                 <button
                                   onClick={() => handleReturnAsset(assignment.id)}
-                                  className="text-green-600 hover:text-green-900 font-medium px-2 py-1 rounded border border-green-200 hover:bg-green-50"
+                                  className="text-green-400 hover:text-green-200 font-bold px-2 py-1 rounded border border-green-600 hover:bg-green-600 font-rajdhani transition-all duration-200"
                                   title="Mark as Returned"
                                 >
-                                  Return
+                                  RETURN
                                 </button>
                               )}
                               
@@ -1187,82 +1192,80 @@ const AssignmentsExpenditures = ({ token, user, onNavigate }) => {
             </>
           ) : (
             <>
-              <h3 className="text-lg leading-6 font-medium text-gray-900 mb-4">Asset Expenditures</h3>
+              <h3 className="text-lg leading-6 font-bold text-military-100 mb-4 font-orbitron tracking-wide">ASSET EXPENDITURES</h3>
               
               {expenditures.length === 0 ? (
                 <div className="text-center py-8">
-                  <svg className="mx-auto h-12 w-12 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z" />
-                  </svg>
-                  <h3 className="mt-2 text-sm font-medium text-gray-900">No expenditures found</h3>
-                  <p className="mt-1 text-sm text-gray-500">Get started by recording your first expenditure.</p>
+                  <SupplyIcon className="mx-auto h-12 w-12 text-military-400" />
+                  <h3 className="mt-2 text-sm font-bold text-military-100 font-rajdhani">NO EXPENDITURES FOUND</h3>
+                  <p className="mt-1 text-sm text-military-400 font-rajdhani">Get started by recording your first tactical expenditure.</p>
                 </div>
               ) : (
                 <div className="overflow-x-auto">
-                  <table className="min-w-full divide-y divide-gray-200">
-                    <thead className="bg-gray-50">
+                  <table className="min-w-full divide-y divide-tactical-600">
+                    <thead className="bg-tactical-700">
                       <tr>
-                        <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Asset</th>
-                        <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Quantity Used</th>
-                        <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Cost per Unit</th>
-                        <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Total Cost</th>
-                        <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Date</th>
-                        <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Purpose</th>
-                        <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Recorded By</th>
-                        <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
+                        <th className="px-6 py-3 text-left text-xs font-bold text-military-300 uppercase tracking-wider font-rajdhani">ASSET</th>
+                        <th className="px-6 py-3 text-left text-xs font-bold text-military-300 uppercase tracking-wider font-rajdhani">QUANTITY USED</th>
+                        <th className="px-6 py-3 text-left text-xs font-bold text-military-300 uppercase tracking-wider font-rajdhani">COST PER UNIT</th>
+                        <th className="px-6 py-3 text-left text-xs font-bold text-military-300 uppercase tracking-wider font-rajdhani">TOTAL COST</th>
+                        <th className="px-6 py-3 text-left text-xs font-bold text-military-300 uppercase tracking-wider font-rajdhani">DATE</th>
+                        <th className="px-6 py-3 text-left text-xs font-bold text-military-300 uppercase tracking-wider font-rajdhani">PURPOSE</th>
+                        <th className="px-6 py-3 text-left text-xs font-bold text-military-300 uppercase tracking-wider font-rajdhani">RECORDED BY</th>
+                        <th className="px-6 py-3 text-left text-xs font-bold text-military-300 uppercase tracking-wider font-rajdhani">ACTIONS</th>
                       </tr>
                     </thead>
-                    <tbody className="bg-white divide-y divide-gray-200">
+                    <tbody className="bg-tactical-800 divide-y divide-tactical-600">
                       {expenditures.map((expenditure) => (
-                        <tr key={expenditure.id} className="hover:bg-gray-50">
+                        <tr key={expenditure.id} className="hover:bg-tactical-700 transition-colors duration-200">
                           <td className="px-6 py-4 whitespace-nowrap">
                             <div>
-                              <div className="text-sm font-medium text-gray-900">{expenditure.asset_name}</div>
-                              <div className="text-sm text-gray-500">{expenditure.asset_category}</div>
+                              <div className="text-sm font-bold text-military-100 font-rajdhani">{expenditure.asset_name}</div>
+                              <div className="text-sm text-military-300 font-rajdhani">{expenditure.asset_category}</div>
                             </div>
                           </td>
-                          <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+                          <td className="px-6 py-4 whitespace-nowrap text-sm text-military-100 font-rajdhani">
                             {expenditure.quantity_used}
                           </td>
-                          <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+                          <td className="px-6 py-4 whitespace-nowrap text-sm text-military-100 font-rajdhani">
                             {expenditure.cost_per_unit ? formatCurrency(expenditure.cost_per_unit) : 'N/A'}
                           </td>
-                          <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+                          <td className="px-6 py-4 whitespace-nowrap text-sm text-military-100 font-rajdhani">
                             {expenditure.total_cost ? formatCurrency(expenditure.total_cost) : 'N/A'}
                           </td>
-                          <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+                          <td className="px-6 py-4 whitespace-nowrap text-sm text-military-100 font-rajdhani">
                             {formatDate(expenditure.expenditure_date)}
                           </td>
-                          <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+                          <td className="px-6 py-4 whitespace-nowrap text-sm text-military-100 font-rajdhani">
                             {expenditure.purpose}
                           </td>
-                          <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+                          <td className="px-6 py-4 whitespace-nowrap text-sm text-military-100 font-rajdhani">
                             {expenditure.recorded_by_name}
                           </td>
                           <td className="px-6 py-4 whitespace-nowrap text-sm font-medium">
                             <div className="flex space-x-2">
                               <button
                                 onClick={() => {/* Handle view expenditure */}}
-                                className="text-blue-600 hover:text-blue-900 font-medium px-2 py-1 rounded border border-blue-200 hover:bg-blue-50"
+                                className="text-military-300 hover:text-military-100 font-bold px-2 py-1 rounded border border-tactical-600 hover:bg-tactical-600 font-rajdhani transition-all duration-200"
                                 title="View Details"
                               >
-                                View
+                                VIEW
                               </button>
                               {canManageAssignments && (
                                 <>
                                   <button
                                     onClick={() => {/* Handle edit expenditure */}}
-                                    className="text-indigo-600 hover:text-indigo-900 font-medium px-2 py-1 rounded border border-indigo-200 hover:bg-indigo-50"
+                                    className="text-military-400 hover:text-military-100 font-bold px-2 py-1 rounded border border-military-500 hover:bg-military-600 font-rajdhani transition-all duration-200"
                                     title="Edit Expenditure"
                                   >
-                                    Edit
+                                    EDIT
                                   </button>
                                   <button
                                     onClick={() => {/* Handle delete expenditure */}}
-                                    className="text-red-600 hover:text-red-900 font-medium px-2 py-1 rounded border border-red-200 hover:bg-red-50"
+                                    className="text-red-400 hover:text-red-200 font-bold px-2 py-1 rounded border border-red-600 hover:bg-red-600 font-rajdhani transition-all duration-200"
                                     title="Delete Expenditure"
                                   >
-                                    Delete
+                                    DELETE
                                   </button>
                                 </>
                               )}
